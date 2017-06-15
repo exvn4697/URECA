@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v4.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context="com.example.wx.apas.ButtonActivity"
+    tools:showIn="@layout/activity_eqscrolling">
+
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/tv_content"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/text_margin"
+            android:text="content" />
+
+        <android.support.design.widget.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:text="Program Code"
+                    android:layout_width="match_parent"
+                    android:layout_height="27dp"
+                    android:id="@+id/textView2"
+                    tools:textStyle="bold" />
+
+                <EditText
+                    android:id="@+id/et_inputcode"
+                    android:layout_width="match_parent"
+                    android:layout_height="357dp"
+                    android:hint="Write your code here"
+                    android:textSize="14sp"
+                    android:background="@android:drawable/edit_text"
+                    android:scrollbars="vertical"
+                    android:minLines="18"
+                    android:maxLines="21"
+                    android:inputType="textMultiLine"
+                    android:gravity="top"
+                    />
+                <TextView
+                    android:text="Your Input"
+                    android:layout_width="match_parent"
+                    android:layout_height="27dp"
+                    android:id="@+id/textView3"
+                    tools:textStyle="bold" />
+
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/et_inputip"
+                    android:background="@android:drawable/edit_text"
+                    android:hint="Note: this is a non-interactive mode, enter all your input at once"
+                    android:textSize="14sp"
+                    android:minLines="4"
+                    android:maxLines="4"
+                    android:inputType="textMultiLine"
+                    android:scrollbars="vertical"
+                    android:gravity="top" />
+            </LinearLayout>
+
+        </android.support.design.widget.TextInputLayout>
+
+
+    </LinearLayout>
+</android.support.v4.widget.NestedScrollView>
