@@ -91,7 +91,7 @@
                 android:value="com.example.wx.apas.ButtonActivity" />
         </activity>
         <activity
-            android:name=".AssignmentActivity"
+            android:name=".QuizActivity"
             android:label="@string/title_activity_assignment"
             android:parentActivityName=".DrawerActivity"
             android:theme="@style/AppTheme.NoActionBar">
@@ -100,13 +100,13 @@
                 android:value="com.example.wx.apas.DrawerActivity" />
         </activity>
         <activity
-            android:name=".AssListActivity"
+            android:name=".QuizListActivity"
             android:label="@string/title_activity_ass_list"
-            android:parentActivityName=".AssignmentActivity"
+            android:parentActivityName=".QuizActivity"
             android:theme="@style/AppTheme.NoActionBar">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.example.wx.apas.AssignmentActivity" />
+                android:value="com.example.wx.apas.QuizActivity" />
         </activity>
     </application>
 

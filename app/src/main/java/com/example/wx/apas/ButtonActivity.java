@@ -1,5 +1,6 @@
 package com.example.wx.apas;
 
+import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
@@ -65,13 +66,13 @@ public class ButtonActivity extends AppCompatActivity {
     private String type;
     private String code;
     private String userinput;
+    private ProgressDialog progressDialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_eqscrolling);
 
-        //新页面接收数据
         Bundle bundle = this.getIntent().getExtras();
         final String contentget = bundle.getString("content");
         solutionget = bundle.getString("solution");
@@ -85,10 +86,7 @@ public class ButtonActivity extends AppCompatActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                //        .setAction("Action", null).show();
                 AlertDialog.Builder builder = new AlertDialog.Builder(ButtonActivity.this);
-                //builder.setIcon(android.R.drawable.ic_dialog_info);
                 builder.setTitle("Suggested_Solution");
                 builder.setMessage(solutionget);
                 builder.setNegativeButton("Close", new DialogInterface.OnClickListener() {
@@ -104,11 +102,11 @@ public class ButtonActivity extends AppCompatActivity {
         bcompilation.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //Toast.makeText(ButtonActivity.this, "123", Toast.LENGTH_SHORT).show();
                 String url= Constants.ROOT_URL + "/mobile/compile/";
                 type = "compile";
                 code = inputcode.getText().toString();
                 userinput = inputip.getText().toString();
+                progressDialog = ProgressDialog.show(ButtonActivity.this,"COMPILING","",true);
                 new JSONTaskPOST().execute(url);
             }
         });
@@ -117,11 +115,11 @@ public class ButtonActivity extends AppCompatActivity {
         bruninput.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //Toast.makeText(ButtonActivity.this, inputcode.getText().toString(),Toast.LENGTH_SHORT).show();
                 String url=Constants.ROOT_URL + "/mobile/run-input/";
                 type = "run-input";
                 code = inputcode.getText().toString();
                 userinput = inputip.getText().toString();
+                progressDialog = ProgressDialog.show(ButtonActivity.this,"RUNNING THE INPUT","",true);
                 new JSONTaskPOST().execute(url);
             }
         });
@@ -130,11 +128,11 @@ public class ButtonActivity extends AppCompatActivity {
         bpretest.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //Toast.makeText(ButtonActivity.this, inputcode.getText().toString(),Toast.LENGTH_SHORT).show();
                 String url=Constants.ROOT_URL + "/mobile/pretest/";
                 type = "pretest";
                 code = inputcode.getText().toString();
                 userinput = inputip.getText().toString();
+                progressDialog = ProgressDialog.show(ButtonActivity.this,"CHECKING WITH PRETEST","",true);
                 new JSONTaskPOST().execute(url);
             }
         });
@@ -143,11 +141,11 @@ public class ButtonActivity extends AppCompatActivity {
         balltest.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //Toast.makeText(ButtonActivity.this, inputcode.getText().toString(),Toast.LENGTH_SHORT).show();
                 String url=Constants.ROOT_URL + "/mobile/alltest/";
                 type = "alltest";
                 code = inputcode.getText().toString();
                 userinput = inputip.getText().toString();
+                progressDialog = ProgressDialog.show(ButtonActivity.this,"CHECKING WITH ALL TESTCASES","",true);
                 new JSONTaskPOST().execute(url);
             }
         });
@@ -307,8 +305,7 @@ public class ButtonActivity extends AppCompatActivity {
         protected void onPostExecute(String result) {
             super.onPostExecute(result);
             String finalJson = result;
-            System.out.println(type);
-            System.out.println("COMPIL result : "+result);
+            progressDialog.dismiss();
             try {
                 JSONObject parrentObject = new JSONObject(finalJson);
 

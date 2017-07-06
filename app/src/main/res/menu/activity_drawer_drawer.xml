@@ -9,7 +9,7 @@
         <item
             android:id="@+id/nav_quiz"
             android:icon="@drawable/ic_menu_slideshow"
-            android:title="Assignment" />
+            android:title="Quiz" />
         <item
             android:id="@+id/nav_share"
             android:icon="@drawable/ic_menu_manage"
