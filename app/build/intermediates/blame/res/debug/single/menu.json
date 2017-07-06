@@ -1,38 +1,38 @@
 [
     {
-        "merged": "C:\\Users\\clp\\AndroidStudioProjects\\APAS\\app\\build\\intermediates\\res\\merged\\debug\\menu\\menu_scrolling_activity2.xml",
-        "source": "C:\\Users\\clp\\AndroidStudioProjects\\APAS\\app\\src\\main\\res\\menu\\menu_scrolling_activity2.xml"
+        "merged": "/home/evn/Desktop/URECA/APAS/app/build/intermediates/res/merged/debug/menu/activity_drawer_drawer.xml",
+        "source": "/home/evn/Desktop/URECA/APAS/app/src/main/res/menu/activity_drawer_drawer.xml"
     },
     {
-        "merged": "C:\\Users\\clp\\AndroidStudioProjects\\APAS\\app\\build\\intermediates\\res\\merged\\debug\\menu\\menu_online_test_tab.xml",
-        "source": "C:\\Users\\clp\\AndroidStudioProjects\\APAS\\app\\src\\main\\res\\menu\\menu_online_test_tab.xml"
+        "merged": "/home/evn/Desktop/URECA/APAS/app/build/intermediates/res/merged/debug/menu/menu_online_test_tab.xml",
+        "source": "/home/evn/Desktop/URECA/APAS/app/src/main/res/menu/menu_online_test_tab.xml"
     },
     {
-        "merged": "C:\\Users\\clp\\AndroidStudioProjects\\APAS\\app\\build\\intermediates\\res\\merged\\debug\\menu\\menu_as_list.xml",
-        "source": "C:\\Users\\clp\\AndroidStudioProjects\\APAS\\app\\src\\main\\res\\menu\\menu_as_list.xml"
+        "merged": "/home/evn/Desktop/URECA/APAS/app/build/intermediates/res/merged/debug/menu/menu_scrolling_activity2.xml",
+        "source": "/home/evn/Desktop/URECA/APAS/app/src/main/res/menu/menu_scrolling_activity2.xml"
     },
     {
-        "merged": "C:\\Users\\clp\\AndroidStudioProjects\\APAS\\app\\build\\intermediates\\res\\merged\\debug\\menu\\menu_assignment.xml",
-        "source": "C:\\Users\\clp\\AndroidStudioProjects\\APAS\\app\\src\\main\\res\\menu\\menu_assignment.xml"
+        "merged": "/home/evn/Desktop/URECA/APAS/app/build/intermediates/res/merged/debug/menu/menu_ass_list.xml",
+        "source": "/home/evn/Desktop/URECA/APAS/app/src/main/res/menu/menu_ass_list.xml"
     },
     {
-        "merged": "C:\\Users\\clp\\AndroidStudioProjects\\APAS\\app\\build\\intermediates\\res\\merged\\debug\\menu\\menu_ass_list.xml",
-        "source": "C:\\Users\\clp\\AndroidStudioProjects\\APAS\\app\\src\\main\\res\\menu\\menu_ass_list.xml"
+        "merged": "/home/evn/Desktop/URECA/APAS/app/build/intermediates/res/merged/debug/menu/menu_assignment.xml",
+        "source": "/home/evn/Desktop/URECA/APAS/app/src/main/res/menu/menu_assignment.xml"
     },
     {
-        "merged": "C:\\Users\\clp\\AndroidStudioProjects\\APAS\\app\\build\\intermediates\\res\\merged\\debug\\menu\\menu_change_password.xml",
-        "source": "C:\\Users\\clp\\AndroidStudioProjects\\APAS\\app\\src\\main\\res\\menu\\menu_change_password.xml"
+        "merged": "/home/evn/Desktop/URECA/APAS/app/build/intermediates/res/merged/debug/menu/menu_as_list.xml",
+        "source": "/home/evn/Desktop/URECA/APAS/app/src/main/res/menu/menu_as_list.xml"
     },
     {
-        "merged": "C:\\Users\\clp\\AndroidStudioProjects\\APAS\\app\\build\\intermediates\\res\\merged\\debug\\menu\\menu_scrolling.xml",
-        "source": "C:\\Users\\clp\\AndroidStudioProjects\\APAS\\app\\src\\main\\res\\menu\\menu_scrolling.xml"
+        "merged": "/home/evn/Desktop/URECA/APAS/app/build/intermediates/res/merged/debug/menu/menu_change_password.xml",
+        "source": "/home/evn/Desktop/URECA/APAS/app/src/main/res/menu/menu_change_password.xml"
     },
     {
-        "merged": "C:\\Users\\clp\\AndroidStudioProjects\\APAS\\app\\build\\intermediates\\res\\merged\\debug\\menu\\activity_drawer_drawer.xml",
-        "source": "C:\\Users\\clp\\AndroidStudioProjects\\APAS\\app\\src\\main\\res\\menu\\activity_drawer_drawer.xml"
+        "merged": "/home/evn/Desktop/URECA/APAS/app/build/intermediates/res/merged/debug/menu/drawer.xml",
+        "source": "/home/evn/Desktop/URECA/APAS/app/src/main/res/menu/drawer.xml"
     },
     {
-        "merged": "C:\\Users\\clp\\AndroidStudioProjects\\APAS\\app\\build\\intermediates\\res\\merged\\debug\\menu\\drawer.xml",
-        "source": "C:\\Users\\clp\\AndroidStudioProjects\\APAS\\app\\src\\main\\res\\menu\\drawer.xml"
+        "merged": "/home/evn/Desktop/URECA/APAS/app/build/intermediates/res/merged/debug/menu/menu_scrolling.xml",
+        "source": "/home/evn/Desktop/URECA/APAS/app/src/main/res/menu/menu_scrolling.xml"
     }
 ]

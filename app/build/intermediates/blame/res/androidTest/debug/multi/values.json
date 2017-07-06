@@ -1,6 +1,6 @@
 [
     {
-        "outputFile": "C:\\Users\\clp\\AndroidStudioProjects\\APAS\\app\\build\\intermediates\\incremental\\mergeDebugAndroidTestResources\\merged.dir\\values\\values.xml",
+        "outputFile": "/home/evn/Desktop/URECA/APAS/app/build/intermediates/incremental/mergeDebugAndroidTestResources/merged.dir/values/values.xml",
         "map": [
             {
                 "to": {
@@ -11,7 +11,7 @@
                     "endOffset": 96
                 },
                 "from": {
-                    "file": "C:\\Users\\clp\\AndroidStudioProjects\\APAS\\app\\build\\intermediates\\exploded-aar\\com.android.support.test\\rules\\0.5\\res\\values\\values.xml",
+                    "file": "/home/evn/.android/build-cache/f8fef8d5d518d476b3ead8f5bf078f3f1f0a4dce/output/res/values/values.xml",
                     "position": {
                         "startLine": 4,
                         "startColumn": 4,

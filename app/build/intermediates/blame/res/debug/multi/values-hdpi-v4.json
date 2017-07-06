@@ -1,6 +1,6 @@
 [
     {
-        "outputFile": "C:\\Users\\clp\\AndroidStudioProjects\\APAS\\app\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-hdpi-v4\\values-hdpi-v4.xml",
+        "outputFile": "/home/evn/Desktop/URECA/APAS/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-hdpi-v4/values-hdpi-v4.xml",
         "map": [
             {
                 "to": {
@@ -12,7 +12,7 @@
                     "endOffset": 327
                 },
                 "from": {
-                    "file": "C:\\Users\\clp\\AndroidStudioProjects\\APAS\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.2.1\\res\\values-hdpi-v4\\values-hdpi-v4.xml",
+                    "file": "/home/evn/.android/build-cache/2fe005b0e80ad0f32833ed31a27a1ec8b7ade6ff/output/res/values-hdpi-v4/values-hdpi-v4.xml",
                     "position": {
                         "startLine": 2,
                         "startColumn": 4,

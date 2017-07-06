@@ -1,42 +1,42 @@
 [
     {
-        "merged": "C:\\Users\\clp\\AndroidStudioProjects\\APAS\\app\\build\\intermediates\\res\\merged\\debug\\drawable-v21\\abc_btn_colored_material.xml",
-        "source": "C:\\Users\\clp\\AndroidStudioProjects\\APAS\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.2.1\\res\\drawable-v21\\abc_btn_colored_material.xml"
+        "merged": "/home/evn/Desktop/URECA/APAS/app/build/intermediates/res/merged/debug/drawable-v21/abc_edit_text_material.xml",
+        "source": "/home/evn/.android/build-cache/2fe005b0e80ad0f32833ed31a27a1ec8b7ade6ff/output/res/drawable-v21/abc_edit_text_material.xml"
     },
     {
-        "merged": "C:\\Users\\clp\\AndroidStudioProjects\\APAS\\app\\build\\intermediates\\res\\merged\\debug\\drawable-v21\\ic_menu_slideshow.xml",
-        "source": "C:\\Users\\clp\\AndroidStudioProjects\\APAS\\app\\src\\main\\res\\drawable-v21\\ic_menu_slideshow.xml"
+        "merged": "/home/evn/Desktop/URECA/APAS/app/build/intermediates/res/merged/debug/drawable-v21/ic_menu_share.xml",
+        "source": "/home/evn/Desktop/URECA/APAS/app/src/main/res/drawable-v21/ic_menu_share.xml"
     },
     {
-        "merged": "C:\\Users\\clp\\AndroidStudioProjects\\APAS\\app\\build\\intermediates\\res\\merged\\debug\\drawable-v21\\ic_menu_send.xml",
-        "source": "C:\\Users\\clp\\AndroidStudioProjects\\APAS\\app\\src\\main\\res\\drawable-v21\\ic_menu_send.xml"
+        "merged": "/home/evn/Desktop/URECA/APAS/app/build/intermediates/res/merged/debug/drawable-v21/ic_menu_send.xml",
+        "source": "/home/evn/Desktop/URECA/APAS/app/src/main/res/drawable-v21/ic_menu_send.xml"
     },
     {
-        "merged": "C:\\Users\\clp\\AndroidStudioProjects\\APAS\\app\\build\\intermediates\\res\\merged\\debug\\drawable-v21\\ic_menu_share.xml",
-        "source": "C:\\Users\\clp\\AndroidStudioProjects\\APAS\\app\\src\\main\\res\\drawable-v21\\ic_menu_share.xml"
+        "merged": "/home/evn/Desktop/URECA/APAS/app/build/intermediates/res/merged/debug/drawable-v21/ic_menu_gallery.xml",
+        "source": "/home/evn/Desktop/URECA/APAS/app/src/main/res/drawable-v21/ic_menu_gallery.xml"
     },
     {
-        "merged": "C:\\Users\\clp\\AndroidStudioProjects\\APAS\\app\\build\\intermediates\\res\\merged\\debug\\drawable-v21\\bg.png",
-        "source": "C:\\Users\\clp\\AndroidStudioProjects\\APAS\\app\\src\\main\\res\\drawable-v21\\bg.png"
+        "merged": "/home/evn/Desktop/URECA/APAS/app/build/intermediates/res/merged/debug/drawable-v21/ic_menu_manage.xml",
+        "source": "/home/evn/Desktop/URECA/APAS/app/src/main/res/drawable-v21/ic_menu_manage.xml"
     },
     {
-        "merged": "C:\\Users\\clp\\AndroidStudioProjects\\APAS\\app\\build\\intermediates\\res\\merged\\debug\\drawable-v21\\abc_edit_text_material.xml",
-        "source": "C:\\Users\\clp\\AndroidStudioProjects\\APAS\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.2.1\\res\\drawable-v21\\abc_edit_text_material.xml"
+        "merged": "/home/evn/Desktop/URECA/APAS/app/build/intermediates/res/merged/debug/drawable-v21/ic_menu_camera.xml",
+        "source": "/home/evn/Desktop/URECA/APAS/app/src/main/res/drawable-v21/ic_menu_camera.xml"
     },
     {
-        "merged": "C:\\Users\\clp\\AndroidStudioProjects\\APAS\\app\\build\\intermediates\\res\\merged\\debug\\drawable-v21\\abc_action_bar_item_background_material.xml",
-        "source": "C:\\Users\\clp\\AndroidStudioProjects\\APAS\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.2.1\\res\\drawable-v21\\abc_action_bar_item_background_material.xml"
+        "merged": "/home/evn/Desktop/URECA/APAS/app/build/intermediates/res/merged/debug/drawable-v21/abc_btn_colored_material.xml",
+        "source": "/home/evn/.android/build-cache/2fe005b0e80ad0f32833ed31a27a1ec8b7ade6ff/output/res/drawable-v21/abc_btn_colored_material.xml"
     },
     {
-        "merged": "C:\\Users\\clp\\AndroidStudioProjects\\APAS\\app\\build\\intermediates\\res\\merged\\debug\\drawable-v21\\ic_menu_manage.xml",
-        "source": "C:\\Users\\clp\\AndroidStudioProjects\\APAS\\app\\src\\main\\res\\drawable-v21\\ic_menu_manage.xml"
+        "merged": "/home/evn/Desktop/URECA/APAS/app/build/intermediates/res/merged/debug/drawable-v21/abc_action_bar_item_background_material.xml",
+        "source": "/home/evn/.android/build-cache/2fe005b0e80ad0f32833ed31a27a1ec8b7ade6ff/output/res/drawable-v21/abc_action_bar_item_background_material.xml"
     },
     {
-        "merged": "C:\\Users\\clp\\AndroidStudioProjects\\APAS\\app\\build\\intermediates\\res\\merged\\debug\\drawable-v21\\ic_menu_camera.xml",
-        "source": "C:\\Users\\clp\\AndroidStudioProjects\\APAS\\app\\src\\main\\res\\drawable-v21\\ic_menu_camera.xml"
+        "merged": "/home/evn/Desktop/URECA/APAS/app/build/intermediates/res/merged/debug/drawable-v21/bg.png",
+        "source": "/home/evn/Desktop/URECA/APAS/app/src/main/res/drawable-v21/bg.png"
     },
     {
-        "merged": "C:\\Users\\clp\\AndroidStudioProjects\\APAS\\app\\build\\intermediates\\res\\merged\\debug\\drawable-v21\\ic_menu_gallery.xml",
-        "source": "C:\\Users\\clp\\AndroidStudioProjects\\APAS\\app\\src\\main\\res\\drawable-v21\\ic_menu_gallery.xml"
+        "merged": "/home/evn/Desktop/URECA/APAS/app/build/intermediates/res/merged/debug/drawable-v21/ic_menu_slideshow.xml",
+        "source": "/home/evn/Desktop/URECA/APAS/app/src/main/res/drawable-v21/ic_menu_slideshow.xml"
     }
 ]

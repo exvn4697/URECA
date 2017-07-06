@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v4.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context="com.example.wx.apas.AssListActivity"
+    tools:showIn="@layout/activity_ass_list">
+
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/tv_title3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            android:text="Title:" />
+
+        <TextView
+            android:text="Description:"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            android:id="@+id/tv_de" />
+
+        <TextView
+        android:text="End Submission Time:"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/tv_end" />
+
+        <TextView
+            android:text="Instruction File Link: NIL \n"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/tv_file" />
+
+        <android.support.design.widget.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:text="Question 1"
+                    android:layout_width="match_parent"
+                    android:layout_height="27dp"
+                    android:id="@+id/textView2"
+                    tools:textStyle="bold" />
+
+                <TextView
+                    android:text="TextView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/textView13" />
+
+                <TextView
+                    android:text="TextView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/textView14" />
+
+                <TextView
+                    android:text="TextView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/textView17" />
+
+                <EditText
+                    android:id="@+id/et_inputcode"
+                    android:layout_width="match_parent"
+                    android:layout_height="357dp"
+                    android:hint="Write your code here"
+                    android:textSize="14sp"
+                    android:background="@android:drawable/edit_text"
+                    android:scrollbars="vertical"
+                    android:minLines="18"
+                    android:maxLines="21"
+                    android:inputType="textMultiLine"
+                    android:gravity="top"
+                    />
+
+                <Button
+                android:text="Try Compilation"
+                style="@android:style/TextAppearance.Material.Small"
+                android:layout_width="wrap_content"
+                android:layout_height="31dp"
+                android:id="@+id/c1"
+                android:background="@android:drawable/divider_horizontal_bright"
+                    />
+
+                <TextView
+                    android:text="\n"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                />
+
+                <TextView
+                    android:text="Question 2"
+                    android:layout_width="match_parent"
+                    android:layout_height="27dp"
+                    android:id="@+id/textView3"
+                    tools:textStyle="bold" />
+
+                <TextView
+                    android:text="TextView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/textView18" />
+
+                <TextView
+                    android:text="TextView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/textView19" />
+
+                <TextView
+                    android:text="TextView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/textView21" />
+
+                <EditText
+                    android:id="@+id/et_inputip"
+                    android:layout_width="match_parent"
+                    android:layout_height="357dp"
+                    android:hint="Write your code here"
+                    android:textSize="14sp"
+                    android:background="@android:drawable/edit_text"
+                    android:scrollbars="vertical"
+                    android:minLines="18"
+                    android:maxLines="21"
+                    android:inputType="textMultiLine"
+                    android:gravity="top"
+                    />
+                <Button
+                    android:text="Try Compilation"
+                    style="@android:style/TextAppearance.Material.Small"
+                    android:layout_width="wrap_content"
+                    android:layout_height="31dp"
+                    android:id="@+id/c2"
+                    android:background="@android:drawable/divider_horizontal_bright"
+                    />
+
+                <Button
+                    android:text="Submit"
+                    style="@android:style/TextAppearance.Material.Small"
+                    android:layout_width="wrap_content"
+                    android:layout_height="31dp"
+                    android:id="@+id/s"
+                    android:background="@android:drawable/screen_background_dark_transparent"
+                />
+
+            </LinearLayout>
+
+        </android.support.design.widget.TextInputLayout>
+
+
+    </LinearLayout>
+</android.support.v4.widget.NestedScrollView>

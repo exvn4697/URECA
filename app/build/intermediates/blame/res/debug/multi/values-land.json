@@ -1,6 +1,6 @@
 [
     {
-        "outputFile": "C:\\Users\\clp\\AndroidStudioProjects\\APAS\\app\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-land\\values-land.xml",
+        "outputFile": "/home/evn/Desktop/URECA/APAS/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-land/values-land.xml",
         "map": [
             {
                 "to": {
@@ -11,7 +11,7 @@
                     "endOffset": 120
                 },
                 "from": {
-                    "file": "C:\\Users\\clp\\AndroidStudioProjects\\APAS\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.2.1\\res\\values-land\\values-land.xml",
+                    "file": "/home/evn/.android/build-cache/2fe005b0e80ad0f32833ed31a27a1ec8b7ade6ff/output/res/values-land/values-land.xml",
                     "position": {
                         "startLine": 2,
                         "startColumn": 4,
@@ -30,7 +30,7 @@
                     "endOffset": 184
                 },
                 "from": {
-                    "file": "C:\\Users\\clp\\AndroidStudioProjects\\APAS\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.2.1\\res\\values-land\\values-land.xml",
+                    "file": "/home/evn/.android/build-cache/2fe005b0e80ad0f32833ed31a27a1ec8b7ade6ff/output/res/values-land/values-land.xml",
                     "position": {
                         "startLine": 3,
                         "startColumn": 4,
@@ -49,7 +49,7 @@
                     "endOffset": 255
                 },
                 "from": {
-                    "file": "C:\\Users\\clp\\AndroidStudioProjects\\APAS\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.2.1\\res\\values-land\\values-land.xml",
+                    "file": "/home/evn/.android/build-cache/2fe005b0e80ad0f32833ed31a27a1ec8b7ade6ff/output/res/values-land/values-land.xml",
                     "position": {
                         "startLine": 4,
                         "startColumn": 4,
@@ -68,7 +68,7 @@
                     "endOffset": 323
                 },
                 "from": {
-                    "file": "C:\\Users\\clp\\AndroidStudioProjects\\APAS\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.2.1\\res\\values-land\\values-land.xml",
+                    "file": "/home/evn/.android/build-cache/2fe005b0e80ad0f32833ed31a27a1ec8b7ade6ff/output/res/values-land/values-land.xml",
                     "position": {
                         "startLine": 5,
                         "startColumn": 4,
@@ -88,7 +88,7 @@
                     "endOffset": 505
                 },
                 "from": {
-                    "file": "C:\\Users\\clp\\AndroidStudioProjects\\APAS\\app\\build\\intermediates\\exploded-aar\\com.android.support\\design\\24.2.1\\res\\values-land\\values-land.xml",
+                    "file": "/home/evn/.android/build-cache/48607d63cef2eb49c2716c6b160cd85dc9ecedad/output/res/values-land/values-land.xml",
                     "position": {
                         "startLine": 2,
                         "startColumn": 4,

@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
+    tools:context="com.example.wx.apas.ScrollingActivity">
+
+    <include layout="@layout/content_scrolling"
+        android:layout_height="534dp"        />
+
+    <android.support.design.widget.AppBarLayout
+        android:id="@+id/app_bar"
+        android:layout_width="match_parent"
+        android:layout_height="237dp"
+        android:fitsSystemWindows="true"
+        android:theme="@style/AppTheme.AppBarOverlay"
+        android:weightSum="1"
+        android:background="?attr/colorPrimaryDark">
+
+        <android.support.design.widget.CollapsingToolbarLayout
+            android:id="@+id/toolbar_layout"
+            android:layout_width="wrap_content"
+            android:layout_height="150dp"
+            android:fitsSystemWindows="true"
+            app:contentScrim="?attr/colorPrimary"
+            app:layout_scrollFlags="scroll|exitUntilCollapsed">
+
+            <android.support.v7.widget.Toolbar
+                android:id="@+id/toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                app:layout_collapseMode="pin"
+                app:popupTheme="@style/AppTheme.PopupOverlay"/>
+
+        </android.support.design.widget.CollapsingToolbarLayout>
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:weightSum="1">
+
+                <TextView
+                    android:text="Language"
+                    android:layout_width="193dp"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/textView6" />
+                <TextView
+                    android:text="Topic"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/textView7" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal"
+                android:weightSum="1"
+                android:layout_weight="1">
+
+                <Spinner
+                    android:layout_width="193dp"
+                    android:layout_height="30dp"
+                    android:id="@+id/spinner"
+                    android:entries="@array/languages"
+                    android:layout_gravity="left" />
+
+                <Spinner
+                    android:layout_width="192dp"
+                    android:layout_height="30dp"
+                    android:id="@+id/spinner2"
+                    android:entries="@array/topics"
+                    android:layout_gravity="right" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="39dp"
+                android:orientation="horizontal"
+                android:weightSum="1">
+
+                <TextView
+                    android:text="Title"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="0.27"
+                    android:id="@+id/textView8" />
+
+                <TextView
+                    android:text="Question Type"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="0.15"
+                 />
+
+                <TextView
+                    android:text="Required Language"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="0.16"
+                />
+
+                <TextView
+                    android:text="Difficulty"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="0.15"
+                />
+
+                <TextView
+                    android:text="Question Topic"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="0.27"
+                  />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </android.support.design.widget.AppBarLayout>
+
+</android.support.design.widget.CoordinatorLayout>
+
