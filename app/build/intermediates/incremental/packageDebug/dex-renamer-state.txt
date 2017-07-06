@@ -1,7 +1,0 @@
-#Tue Jul 04 16:45:12 MYT 2017
-base.0=/home/evn/Desktop/URECA/APAS/app/build/intermediates/transforms/dex/debug/folders/1000/10000/instant-run-bootstrap_91f026c142c9ad71b2d87b0fdec774f6ae5850c3
-renamed.1=classes.dex
-renamed.0=classes2.dex
-file.1=/home/evn/Desktop/URECA/APAS/app/build/intermediates/transforms/dex/debug/folders/1000/10000/instant-run_a3ab99329e0eaa150e16a982804e7b400dee33bd/classes.dex
-base.1=/home/evn/Desktop/URECA/APAS/app/build/intermediates/transforms/dex/debug/folders/1000/10000/instant-run_a3ab99329e0eaa150e16a982804e7b400dee33bd
-file.0=/home/evn/Desktop/URECA/APAS/app/build/intermediates/transforms/dex/debug/folders/1000/10000/instant-run-bootstrap_91f026c142c9ad71b2d87b0fdec774f6ae5850c3/classes.dex
