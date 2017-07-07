@@ -7,7 +7,7 @@
     android:fitsSystemWindows="true"
     tools:context="com.example.wx.apas.QuizActivity">
 
-    <include layout="@layout/content_assignment"
+    <include layout="@layout/content_quiz"
         android:layout_height="493dp"        />
 
     <android.support.design.widget.AppBarLayout

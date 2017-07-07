@@ -35,6 +35,16 @@
         android:layout_margin="@dimen/fab_margin"
         app:srcCompat="@android:drawable/ic_menu_manage" />
 
-    <include layout="@layout/content_ass_list" />
+    <include layout="@layout/content_quiz_list"
+        android:id="@+id/include2" />
+
+    <Button
+        android:text="Submit"
+        style="@android:style/TextAppearance.Material.Small"
+        android:layout_width="wrap_content"
+        android:layout_height="31dp"
+        android:id="@+id/s"
+        android:background="@android:drawable/screen_background_dark_transparent"
+        />
 
 </android.support.design.widget.CoordinatorLayout>

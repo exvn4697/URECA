@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+        <TextView
+            android:text="Question 1"
+            android:layout_width="match_parent"
+            android:layout_height="27dp"
+            android:id="@+id/textView2"
+            tools:textStyle="bold" />
+
+        <TextView
+            android:text="Title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/textViewTitle" />
+
+        <TextView
+            android:text="Difficulty"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/textViewDifficulty" />
+
+        <TextView
+            android:text="Description"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/textViewDescription" />
+
+        <EditText
+            android:id="@+id/et_inputcode"
+            android:layout_width="match_parent"
+            android:layout_height="357dp"
+            android:hint="Write your code here"
+            android:textSize="14sp"
+            android:background="@android:drawable/edit_text"
+            android:scrollbars="vertical"
+            android:minLines="18"
+            android:maxLines="21"
+            android:inputType="textMultiLine"
+            android:gravity="top"
+            />
+
+        <Button
+            android:text="Try Compilation"
+            style="@android:style/TextAppearance.Material.Small"
+            android:layout_width="wrap_content"
+            android:layout_height="31dp"
+            android:id="@+id/compilation"
+            android:background="@android:drawable/divider_horizontal_bright"
+            />
+
+        <TextView
+            android:text="\n"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            />
+</LinearLayout>

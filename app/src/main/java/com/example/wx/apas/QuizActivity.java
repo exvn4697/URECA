@@ -51,6 +51,7 @@ public class QuizActivity extends AppCompatActivity {
         setContentView(R.layout.activity_quiz);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         firsturl = Constants.ROOT_URL + "/mobile/quiz-view/";
 /*        new JSONTaskGET().execute(firsturl);
@@ -162,7 +163,7 @@ public class QuizActivity extends AppCompatActivity {
                 JSONObject parrentObject = new JSONObject(finalJson);
                 //next = parrentObject.getString("next");
                 // previous = parrentObject.getString("previous");
-
+                datas = new ArrayList<Data>();
                 JSONArray parrentArray = parrentObject.getJSONArray("quiz");
                 for (int i = 0; i < parrentArray.length(); i++) {
                     JSONObject finalObject = parrentArray.getJSONObject(i);
@@ -197,15 +198,8 @@ public class QuizActivity extends AppCompatActivity {
 
         private final class ItemClickEvent implements AdapterView.OnItemClickListener {
             @Override
-            //这里需要注意的是第三个参数arg2，这是代表单击第几个选项
             public void onItemClick(AdapterView<?> arg0, View arg1, int position,
                                     long arg3) {
-                //通过单击事件，获得单击选项的内容
-                //String text = lv.getItemAtPosition(arg2)+"";
-                //通过吐丝对象显示出来。
-                //Toast.makeText(getApplicationContext(), text, 1).show();
-
-                //新建一个显式意图，第一个参数为当前Activity类对象，第二个参数为你要打开的Activity类
                 Intent intent =new Intent(QuizActivity.this, QuizListActivity.class);
 
                 final Data data = datas.get(position);

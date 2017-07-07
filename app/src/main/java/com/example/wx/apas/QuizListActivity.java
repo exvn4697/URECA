@@ -1,5 +1,6 @@
 package com.example.wx.apas;
 
+import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -7,11 +8,15 @@ import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Base64;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.ViewParent;
 import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 import android.widget.Button;
+import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -39,6 +44,7 @@ public class QuizListActivity extends AppCompatActivity {
     private static String titleget;
     private static String descriptionget;
     private static String endget;
+    private String type;
 
     private static final int CHANGE_UI = 1;
     private static final int ERROR = 2;
@@ -70,63 +76,7 @@ public class QuizListActivity extends AppCompatActivity {
 
         firsturl = Constants.ROOT_URL + "/mobile/quiz-question-view/";
         new JSONTaskPOST().execute(firsturl);
-        //lv2 = (ListView)findViewById(R.id.lv2);
 
-        Button bcompilation=(Button) findViewById(R.id.c1);
-        bcompilation.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                //Toast.makeText(ButtonActivity.this, "123", Toast.LENGTH_SHORT).show();
-                //String url="http://10.0.2.2:8000/mobile/run-input/";
-                //new JSONTaskPOST().execute(url);
-                AlertDialog.Builder builder = new AlertDialog.Builder(QuizListActivity.this);
-                //builder.setIcon(android.R.drawable.ic_dialog_info);
-                //builder.setTitle("Suggested_Solution");
-                builder.setMessage("Compilation is successful!");
-                builder.setNegativeButton("Close", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                    }
-                });
-                builder.show();
-            }
-        });
-
-        Button bcompilation2=(Button) findViewById(R.id.c2);
-        bcompilation2.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                //Toast.makeText(ButtonActivity.this, "123", Toast.LENGTH_SHORT).show();
-                //String url="http://10.0.2.2:8000/mobile/run-input/";
-                //new JSONTaskPOST().execute(url);
-                AlertDialog.Builder builder = new AlertDialog.Builder(QuizListActivity.this);
-                //builder.setIcon(android.R.drawable.ic_dialog_info);
-                //builder.setTitle("Suggested_Solution");
-                builder.setMessage("Compilation is successful!");
-                builder.setNegativeButton("Close", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                    }
-                });
-                builder.show();
-            }
-        });
-
-        Button bruninput=(Button) findViewById(R.id.s);
-        bruninput.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                AlertDialog.Builder builder = new AlertDialog.Builder(QuizListActivity.this);
-                //builder.setIcon(android.R.drawable.ic_dialog_info);
-                builder.setMessage("Submission is successful!");
-                builder.setNegativeButton("Close", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                    }
-                });
-                builder.show();
-            }
-        });
     }
 
     class JSONTaskPOST extends AsyncTask<String, String, String> {
@@ -232,45 +182,51 @@ public class QuizListActivity extends AppCompatActivity {
                 //next = parrentObject.getString("next");
                 // previous = parrentObject.getString("previous");
                 JSONArray parrentArray = parrentObject.getJSONArray("question");
+                System.out.println("result = "+parrentArray);
                 for (int i = 0; i < parrentArray.length(); i++) {
                     JSONObject finalObject = parrentArray.getJSONObject(i);
                     //String url = finalObject.getString("url");
                     String title = finalObject.getString("title");
                     int difficulty = finalObject.getInt("difficulty");
                     String content = finalObject.getString("content");
+                    String suggested_solution = finalObject.getString("suggested_solution");
                     //question_topicurl =finalObject.getString("question_topic");
                     //String question_topic =finalObject.getString("happy");
                     //ht tp :/ /1 27 .0 .0 .1 :8 00 0/ mo bi le /q ue st io n/ 168/
                     //String[] str = url.split("/");
                     //int question_id = Integer.parseInt(str[5]);
-                    if(i==0)
-                    {
-                        TextView tv_title2 = (TextView) findViewById(R.id.textView13);
-                        tv_title2.setText("Title: " + title);
-                        TextView difficulty2 = (TextView) findViewById(R.id.textView14);
-                        difficulty2.setText("Difficulty: " + String.valueOf(difficulty));
-                        TextView content2 = (TextView) findViewById(R.id.textView17);
-                        content2.setText("Content: " + content);
-                    }
-                    else
-                    {
-                        TextView tv_title2 = (TextView) findViewById(R.id.textView18);
-                        tv_title2.setText("Title: " + title);
-                        TextView difficulty2 = (TextView) findViewById(R.id.textView19);
-                        difficulty2.setText("Difficulty: " + String.valueOf(difficulty));
-                        TextView content2 = (TextView) findViewById(R.id.textView21);
-                        content2.setText("Content: " + content);
-                    }
-                    /*
-                    Data data = new Data();
-                    //data.setId(url);
-                    data.setTitle(title);
-                    data.setDifficulty(difficulty);
-                    data.setContent(content);*/
+                    LinearLayout tvq = (LinearLayout) findViewById(R.id.tv_questions);
+                    View child = LayoutInflater.from(QuizListActivity.this).inflate(
+                            R.layout.content_quiz_question,null);
+                    TextView tv_title = (TextView) child.findViewById(R.id.textViewTitle);
+                    tv_title.setText("Title: " + title);
+                    TextView tv_difficulty = (TextView) child.findViewById(R.id.textViewDifficulty);
+                    tv_difficulty.setText("Difficulty: " + difficulty);
+                    TextView tv_content = (TextView) child.findViewById(R.id.textViewDescription);
+                    tv_content.setText("Content: " + content);
+                    TextView tv_inputcode = (TextView) child.findViewById(R.id.et_inputcode);
+                    tv_inputcode.setText(suggested_solution);
+
+                    tvq.addView(child);
+                    Button bcompilation=(Button) child.findViewById(R.id.compilation);
+                    bcompilation.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            //add compilation here
+                            ViewParent parent = v.getParent();
+                            EditText inputcode = (EditText) ( (View) parent).findViewById(R.id.et_inputcode);
+                            String code = inputcode.getText().toString();
+                            AlertDialog.Builder builder = new AlertDialog.Builder(QuizListActivity.this);
+                            builder.setMessage("Compilation is successful!\n"+code);
+                            builder.setNegativeButton("Close", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+                                }
+                            });
+                            builder.show();
+                        }
+                    });
                 }
-                //lv2.setAdapter(new MyAdapter());
-                //lv2.setOnItemClickListener(new ItemClickEvent());
-                //new JSONTaskGET().execute(question_topicurl);
             } catch (JSONException e) {
                 e.printStackTrace();
             }
