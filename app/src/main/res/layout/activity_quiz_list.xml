@@ -10,41 +10,30 @@
     <android.support.design.widget.AppBarLayout
         android:id="@+id/app_bar"
         android:layout_width="match_parent"
-        android:layout_height="72dp"
+        android:layout_height="@dimen/app_bar_height"
         android:fitsSystemWindows="true"
-        android:theme="@style/AppTheme.NoActionBar.AppBarOverlay"
-        android:background="?attr/colorPrimaryDark">
+        android:background="?attr/colorPrimaryDark"
+        android:theme="@style/AppTheme.NoActionBar.AppBarOverlay">
 
-
-        <include
-            layout="@layout/app_bar_drawer"
+        <android.support.design.widget.CollapsingToolbarLayout
+            android:id="@+id/toolbar_layout"
             android:layout_width="match_parent"
-            android:layout_height="19dp" />
+            android:layout_height="match_parent"
+            android:fitsSystemWindows="true"
+            app:contentScrim="?attr/colorPrimary"
+            app:layout_scrollFlags="scroll|exitUntilCollapsed">
 
-        <include
-            layout="@layout/question_panel"
-            />
+            <android.support.v7.widget.Toolbar
+                android:id="@+id/toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                app:layout_collapseMode="pin"
+                app:popupTheme="@style/AppTheme.NoActionBar.PopupOverlay" />
+
+        </android.support.design.widget.CollapsingToolbarLayout>
 
     </android.support.design.widget.AppBarLayout>
 
-    <android.support.design.widget.FloatingActionButton
-        android:id="@+id/fab"
-        android:layout_width="51dp"
-        android:layout_height="51dp"
-        android:layout_gravity="bottom|end"
-        android:layout_margin="@dimen/fab_margin"
-        app:srcCompat="@android:drawable/ic_menu_manage" />
-
-    <include layout="@layout/content_quiz_list"
-        android:id="@+id/include2" />
-
-    <Button
-        android:text="Submit"
-        style="@android:style/TextAppearance.Material.Small"
-        android:layout_width="wrap_content"
-        android:layout_height="31dp"
-        android:id="@+id/s"
-        android:background="@android:drawable/screen_background_dark_transparent"
-        />
+    <include layout="@layout/content_quiz_list2" />
 
 </android.support.design.widget.CoordinatorLayout>

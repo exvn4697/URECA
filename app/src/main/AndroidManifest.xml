@@ -100,7 +100,7 @@
                 android:value="com.example.wx.apas.DrawerActivity" />
         </activity>
         <activity
-            android:name=".QuizListActivity"
+            android:name=".QuizQuestionActivity"
             android:label="@string/title_activity_ass_list"
             android:parentActivityName=".QuizActivity"
             android:theme="@style/AppTheme.NoActionBar">
@@ -108,6 +108,10 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.example.wx.apas.QuizActivity" />
         </activity>
+        <activity
+            android:name=".QuizListActivity"
+            android:label="@string/title_activity_quiz_list"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
 </manifest>

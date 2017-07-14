@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Base64;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
@@ -52,13 +53,22 @@ public class QuizActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setTitle("Quiz");
 
         firsturl = Constants.ROOT_URL + "/mobile/quiz-view/";
-/*        new JSONTaskGET().execute(firsturl);
-        lv2 = (ListView)findViewById(R.id.lv2);*/
 
         new JSONTaskPOST().execute(firsturl);
         lv2 = (ListView)findViewById(R.id.lv2);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()){
+            case android.R.id.home:
+                onBackPressed();
+                return true;
+        }
+        return super.onOptionsItemSelected(item);
     }
 
     class JSONTaskPOST extends AsyncTask<String, String, String> {
@@ -155,11 +165,10 @@ public class QuizActivity extends AppCompatActivity {
             }
             return null;
         }
-        protected void onPostExecute(String assignment) {
-            super.onPostExecute(assignment);
-            String finalJson = assignment;
+        protected void onPostExecute(String quiz) {
+            super.onPostExecute(quiz);
+            String finalJson = quiz;
             try {
-                //String finalJson = assignment;
                 JSONObject parrentObject = new JSONObject(finalJson);
                 //next = parrentObject.getString("next");
                 // previous = parrentObject.getString("previous");
@@ -224,7 +233,6 @@ public class QuizActivity extends AppCompatActivity {
 
             @Override
             public int getCount() {
-                // Log.d("AAA", "" + datas.size());
                 return datas.size();
             }
 
@@ -243,37 +251,17 @@ public class QuizActivity extends AppCompatActivity {
             public View getView(int position, View convertView, ViewGroup parent) {
                 View view = View.inflate(QuizActivity.this, R.layout.item_listviewass, null);
                 final Data data = datas.get(position);
-                //Log.d("aaaaa", datas.get(position).getExp_name());
 
                 TextView title = (TextView) view.findViewById(R.id.tv_t);
                 TextView description = (TextView) view.findViewById(R.id.tv_d);
-                //TextView start_submission_time = (TextView) view.findViewById(R.id.tv_s);
                 TextView end_submission_time = (TextView) view.findViewById(R.id.tv_e);
-
-                //String.valueOf(data.getTitle());
-
                 title.setText(data.getTitle2());
                 //title.setText(String.valueOf(data.getUrl()));
                 description.setText(data.getDescription());
                 end_submission_time.setText(data.getEnd_submission_time());
                 //question_topic.setText(data.getQuestion_topic());
-
-                //Log.i("content", content);
-                //Log.i("exp_name", datas.get(position).getExp_name());
                 return view;
             }
         }
-        /*
-            String finalJson = result;
-            JSONObject parrentObject = new JSONObject(finalJson);
-            JSONArray parrentArray = parrentObject.getJSONArray("results");
-            for(int i=0;i<parrentArray.length();i++){
-                JSONObject finalObject = parrentArray.getJSONObject(i);
-                String questionURL = finalObject.getString("url");
-                String title = finalObject.getString("title");
-                String content = finalObject.getString("content");
-                String suggested_solution = finalObject.getString("suggested_solution");
-            }
-*/
     }
 }

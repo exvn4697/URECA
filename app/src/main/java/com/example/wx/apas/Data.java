@@ -15,15 +15,16 @@ public class Data {
     private String required_language;
     private int difficulty;
     private String content;
+    private String code_template;
     private String solution;
     private String question_topic;
     private String submission_time;
     private String program_output;
+    private boolean submitted;
 
     private String description;
     private String start_submission_time;
     private String end_submission_time;
-    private int max_number_of_attempts;
 
     public int getId() {
         return question_id;
@@ -68,6 +69,13 @@ public class Data {
     }
     public void setContent(String content) {
         this.content = content;
+    }
+
+    public String getCodeTemplate() {
+        return code_template;
+    }
+    public void setCodeTemplate(String code_template) {
+        this.code_template = code_template;
     }
 
     public String getSolution() {
@@ -136,14 +144,12 @@ public class Data {
         this.end_submission_time = end_submission_time;
     }
 
-    public int getMax_number_of_attempts() {
-        return max_number_of_attempts;
+    public boolean getSubmitted() {
+        return submitted;
     }
-    public void setMax_number_of_attempts(int max_number_of_attempts) {
-        this.max_number_of_attempts = max_number_of_attempts;
+    public void setSubmitted(boolean submitted) {
+        this.submitted = submitted;
     }
-
-
 
     @Override
     public String toString() {

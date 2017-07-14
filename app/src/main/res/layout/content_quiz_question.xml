@@ -29,6 +29,11 @@
             android:layout_height="wrap_content"
             android:id="@+id/textViewDescription" />
 
+        <TextView
+            android:text="Program code:"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
         <EditText
             android:id="@+id/et_inputcode"
             android:layout_width="match_parent"
@@ -39,6 +44,23 @@
             android:scrollbars="vertical"
             android:minLines="18"
             android:maxLines="21"
+            android:inputType="textMultiLine"
+            android:gravity="top"
+            />
+
+        <TextView
+            android:text="Your input here:"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <EditText
+            android:id="@+id/et_inputtip"
+            android:layout_width="match_parent"
+            android:layout_height="70dp"
+            android:hint="Your input here"
+            android:textSize="14sp"
+            android:background="@android:drawable/edit_text"
+            android:scrollbars="vertical"
             android:inputType="textMultiLine"
             android:gravity="top"
             />

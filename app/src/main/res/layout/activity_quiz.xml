@@ -32,7 +32,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize"
                 app:layout_collapseMode="pin"
-                app:popupTheme="@style/AppTheme.PopupOverlay"/>
+                app:popupTheme="@style/AppTheme.PopupOverlay" />
 
         </android.support.design.widget.CollapsingToolbarLayout>
 
@@ -45,7 +45,7 @@
             <TextView
                 android:text="Title"
                 android:layout_width="44dp"
-                android:layout_height="55dp"
+                android:layout_height="108dp"
                 android:layout_weight="0.66"
                 android:id="@+id/textView5" />
 
@@ -61,12 +61,6 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="0.30"
                     android:id="@+id/textView9" />
-
-            <TextView
-                android:text="Number Of Attempts Remaining"
-                android:layout_width="78dp"
-                android:layout_height="86dp"
-                android:id="@+id/textView10" />
 
         </LinearLayout>
 

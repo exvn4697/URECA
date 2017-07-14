@@ -255,6 +255,7 @@ public class ScrollingActivity extends AppCompatActivity{
                             previous = parrentObject.getString("previous");
 
                             JSONArray parrentArray = parrentObject.getJSONArray("results");
+                            System.out.println("result1 = "+parrentArray);
                             for (int i = 0; i < parrentArray.length(); i++) {
                                 JSONObject finalObject = parrentArray.getJSONObject(i);
                                 String url = finalObject.getString("url");
@@ -264,6 +265,7 @@ public class ScrollingActivity extends AppCompatActivity{
                                 int difficulty = finalObject.getInt("difficulty");
                                 String content = finalObject.getString("content");
                                 String solution = finalObject.getString("suggested_solution");
+                                String code_template = finalObject.getString("code_template");
                                 //question_topicurl =finalObject.getString("question_topic");
                                 //String question_topic =finalObject.getString("happy");
 
@@ -311,6 +313,7 @@ public class ScrollingActivity extends AppCompatActivity{
                 required_language =data.getRequired_language();
 
                 Bundle bundle=new Bundle();
+                bundle.putString("title",data.getTitle());
                 bundle.putString("content", content);
                 bundle.putString("solution", solution);
                 bundle.putInt("question_id",question_id);

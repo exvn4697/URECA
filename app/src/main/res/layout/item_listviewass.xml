@@ -35,12 +35,6 @@
         android:id="@+id/tv_e"
         android:layout_weight="0.30" />
 
-    <TextView
-        android:text="Number Of Attempts Remaining"
-        android:layout_width="78dp"
-        android:layout_height="55dp"
-        android:id="@+id/tv_n" />
-
     </LinearLayout>
 
 </LinearLayout>

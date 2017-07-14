@@ -13,11 +13,11 @@
 
             android:background="@android:drawable/divider_horizontal_textfield"
             android:textColorHint="@color/colorPrimaryDark"
-            android:layout_weight="0.2" />
+            android:layout_weight="0.10" />
 
         <Button
             android:text="Run INPUT"
-            android:layout_weight="0.2"
+            android:layout_weight="0.10"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:id="@+id/runinput"
@@ -26,7 +26,7 @@
 
         <Button
             android:text="CHECK WITH PRETESTS"
-            android:layout_weight="0.3"
+            android:layout_weight="0.40"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:id="@+id/pretest"
@@ -34,7 +34,7 @@
 
         <Button
             android:text="CHECK WITH ALL TESTCASES"
-            android:layout_weight="0.3"
+            android:layout_weight="0.40"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:id="@+id/alltest"

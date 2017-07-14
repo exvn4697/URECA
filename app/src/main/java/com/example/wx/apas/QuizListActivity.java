@@ -1,22 +1,19 @@
 package com.example.wx.apas;
 
-import android.app.ProgressDialog;
-import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.support.v7.app.AlertDialog;
+import android.support.annotation.NonNull;
+import android.support.design.widget.FloatingActionButton;
+import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Base64;
-import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.ViewParent;
 import android.widget.AdapterView;
 import android.widget.BaseAdapter;
-import android.widget.Button;
-import android.widget.EditText;
-import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -36,23 +33,21 @@ import java.net.MalformedURLException;
 import java.net.PasswordAuthentication;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Iterator;
 import java.util.List;
+import java.util.ListIterator;
 
 public class QuizListActivity extends AppCompatActivity {
 
-    private static int idget;
-    private static String titleget;
-    private static String descriptionget;
-    private static String endget;
-    private String type;
-
-    private static final int CHANGE_UI = 1;
-    private static final int ERROR = 2;
-
     private static List<Data> datas = new ArrayList<Data>();
     private static  String firsturl;
-    private static ListView lv2;
-    private static int assignment_id;
+    private static ListView lv;
+    private static int id;
+    private static  String title;
+    private static  String description;
+    private static  String end;
+    private static  String instructuion_file;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,23 +55,26 @@ public class QuizListActivity extends AppCompatActivity {
         setContentView(R.layout.activity_quiz_list);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setTitle("Quiz");
 
         Bundle bundle = this.getIntent().getExtras();
-        idget= bundle.getInt("id");
-        titleget=bundle.getString("title");
-        descriptionget=bundle.getString("description");
-        endget=bundle.getString("end");
+        id = bundle.getInt("id");
+        title = bundle.getString("title");
+        getSupportActionBar().setTitle(title);
 
-        TextView tv_title = (TextView) findViewById(R.id.tv_title3);
-        tv_title.setText("Title: " + titleget);
-        TextView tv_description = (TextView) findViewById(R.id.tv_de);
-        tv_description.setText("Description: " + descriptionget);
-        TextView tv_end = (TextView) findViewById(R.id.tv_end);
-        tv_end.setText("End Submission Time: " + endget);
-
-        firsturl = Constants.ROOT_URL + "/mobile/quiz-question-view/";
+        String firsturl = Constants.ROOT_URL + "/mobile/quiz-question-view/";
         new JSONTaskPOST().execute(firsturl);
+        lv = (ListView)findViewById(R.id.lv);
+    }
 
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()){
+            case android.R.id.home:
+                onBackPressed();
+                return true;
+        }
+        return super.onOptionsItemSelected(item);
     }
 
     class JSONTaskPOST extends AsyncTask<String, String, String> {
@@ -91,7 +89,7 @@ public class QuizListActivity extends AppCompatActivity {
 
             JSONObject postdata = new JSONObject();
             try {
-                postdata.put("quiz_id", idget);
+                postdata.put("quiz_id", id);
 
             } catch (JSONException e) {
                 // TODO Auto-generated catch block
@@ -125,8 +123,6 @@ public class QuizListActivity extends AppCompatActivity {
                 osw.flush();
                 osw.close();
 
-                // connection.getOutputStream().write(postdatabytes);
-                //connection.connect();
                 System.out.println("status POST = "+ connection.getResponseCode() );
                 InputStream stream = connection.getInputStream();
 
@@ -140,26 +136,14 @@ public class QuizListActivity extends AppCompatActivity {
                 }
 
                 return buffer.toString();
-/*
-            String finalJson = results;
-            JSONObject parrentObject = new JSONObject(finalJson);
-            JSONArray parrentArray = parrentObject.getJSONArray("results");
-            for(int i=0;i<parrentArray.length();i++){
-                JSONObject finalObject = parrentArray.getJSONObject(i);
-                String questionURL = finalObject.getString("url");
-                String title = finalObject.getString("title");
-                String content = finalObject.getString("content");
-                String suggested_solution = finalObject.getString("suggested_solution");
-
-            }*/
 
             } catch (MalformedURLException e) {
                 e.printStackTrace();
             } catch (IOException e) {
                 e.printStackTrace();
             } /*catch (JSONException e) {
-                e.printStackTrace();
-            }*/
+                    e.printStackTrace();
+                }*/
             finally {
                 if (connection != null)
                     connection.disconnect();
@@ -181,52 +165,45 @@ public class QuizListActivity extends AppCompatActivity {
                 JSONObject parrentObject = new JSONObject(finalJson);
                 //next = parrentObject.getString("next");
                 // previous = parrentObject.getString("previous");
+                datas = new ArrayList<>();
+                JSONArray submitted = parrentObject.getJSONArray("submitted");
+                JSONArray saved_codes = parrentObject.getJSONArray("saved_codes");
                 JSONArray parrentArray = parrentObject.getJSONArray("question");
+
                 System.out.println("result = "+parrentArray);
                 for (int i = 0; i < parrentArray.length(); i++) {
                     JSONObject finalObject = parrentArray.getJSONObject(i);
-                    //String url = finalObject.getString("url");
+                    String url = finalObject.getString("url");
                     String title = finalObject.getString("title");
+                    String question_type = finalObject.getString("question_type");
+                    String required_language = finalObject.getString("required_language");
                     int difficulty = finalObject.getInt("difficulty");
                     String content = finalObject.getString("content");
-                    String suggested_solution = finalObject.getString("suggested_solution");
+                    String solution = finalObject.getString("suggested_solution");
+                    String code_template = finalObject.getString("code_template");
                     //question_topicurl =finalObject.getString("question_topic");
-                    //String question_topic =finalObject.getString("happy");
-                    //ht tp :/ /1 27 .0 .0 .1 :8 00 0/ mo bi le /q ue st io n/ 168/
-                    //String[] str = url.split("/");
-                    //int question_id = Integer.parseInt(str[5]);
-                    LinearLayout tvq = (LinearLayout) findViewById(R.id.tv_questions);
-                    View child = LayoutInflater.from(QuizListActivity.this).inflate(
-                            R.layout.content_quiz_question,null);
-                    TextView tv_title = (TextView) child.findViewById(R.id.textViewTitle);
-                    tv_title.setText("Title: " + title);
-                    TextView tv_difficulty = (TextView) child.findViewById(R.id.textViewDifficulty);
-                    tv_difficulty.setText("Difficulty: " + difficulty);
-                    TextView tv_content = (TextView) child.findViewById(R.id.textViewDescription);
-                    tv_content.setText("Content: " + content);
-                    TextView tv_inputcode = (TextView) child.findViewById(R.id.et_inputcode);
-                    tv_inputcode.setText(suggested_solution);
 
-                    tvq.addView(child);
-                    Button bcompilation=(Button) child.findViewById(R.id.compilation);
-                    bcompilation.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View v) {
-                            //add compilation here
-                            ViewParent parent = v.getParent();
-                            EditText inputcode = (EditText) ( (View) parent).findViewById(R.id.et_inputcode);
-                            String code = inputcode.getText().toString();
-                            AlertDialog.Builder builder = new AlertDialog.Builder(QuizListActivity.this);
-                            builder.setMessage("Compilation is successful!\n"+code);
-                            builder.setNegativeButton("Close", new DialogInterface.OnClickListener() {
-                                @Override
-                                public void onClick(DialogInterface dialog, int which) {
-                                }
-                            });
-                            builder.show();
-                        }
-                    });
+                    Data data = new Data();
+                    data.setId(url);
+                    data.setTitle(title);
+                    data.setQuestion_type(question_type);
+                    data.setRequired_language(required_language);
+                    data.setDifficulty(difficulty);
+                    data.setContent(content);
+                    data.setSolution(solution);
+                    data.setCodeTemplate(code_template);
+
+                    String code = saved_codes.getString(i);
+                    boolean submit = submitted.getBoolean(i);
+                    data.setSubmitted(submit);
+                    if(submit)
+                        data.setCodeTemplate(code);
+
+
+                    datas.add(data);
                 }
+                lv.setAdapter(new JSONTaskPOST.MyAdapter());
+                lv.setOnItemClickListener(new JSONTaskPOST.ItemClickEvent());
             } catch (JSONException e) {
                 e.printStackTrace();
             }
@@ -234,33 +211,26 @@ public class QuizListActivity extends AppCompatActivity {
 
         private final class ItemClickEvent implements AdapterView.OnItemClickListener {
             @Override
-            //这里需要注意的是第三个参数arg2，这是代表单击第几个选项
             public void onItemClick(AdapterView<?> arg0, View arg1, int position,
                                     long arg3) {
-                //通过单击事件，获得单击选项的内容
-                //String text = lv.getItemAtPosition(arg2)+"";
-                //通过吐丝对象显示出来。
-                //Toast.makeText(getApplicationContext(), text, 1).show();
-
-                //新建一个显式意图，第一个参数为当前Activity类对象，第二个参数为你要打开的Activity类
-                /*Intent intent =new Intent(QuizActivity.this, QuizListActivity.class);
+                Intent intent =new Intent(QuizListActivity.this, QuizQuestionActivity.class);
 
                 final Data data = datas.get(position);
-                assignment_id = data.getId2();
-                ass_title = data.getTitle2();
-                ass_description = data.getDescription();
-                ass_end = data.getEnd_submission_time();
-                //用Bundle携带数据
+                String content = data.getContent();
+                String solution = data.getSolution();
+                int question_id = data.getId();
+                String required_language =data.getRequired_language();
+
                 Bundle bundle=new Bundle();
-                //传递name参数为tinyphp
-                bundle.putInt("assignment_id",assignment_id);
-                bundle.putString("ass_title",ass_title);
-                bundle.putString("ass_description",ass_description);
-                bundle.putString("ass_end",ass_end);
+                bundle.putString("content", content);
+                bundle.putString("solution", solution);
+                bundle.putInt("question_id",question_id);
+                bundle.putString("required_language",required_language);
+                intent.putExtras(bundle);
 
                 intent.putExtras(bundle);
 
-                startActivity(intent);*/
+                startActivity(intent);
 
             }
         }
@@ -269,7 +239,6 @@ public class QuizListActivity extends AppCompatActivity {
 
             @Override
             public int getCount() {
-                // Log.d("AAA", "" + datas.size());
                 return datas.size();
             }
 
@@ -286,41 +255,30 @@ public class QuizListActivity extends AppCompatActivity {
 
             @Override
             public View getView(int position, View convertView, ViewGroup parent) {
-                View view = View.inflate(QuizListActivity.this, R.layout.item_listviewass, null);
+                View view = View.inflate(QuizListActivity.this, R.layout.item_listview, null);
                 final Data data = datas.get(position);
-                //Log.d("aaaaa", datas.get(position).getExp_name());
 
-                TextView title = (TextView) view.findViewById(R.id.tv_t);
-                TextView description = (TextView) view.findViewById(R.id.tv_d);
-                //TextView start_submission_time = (TextView) view.findViewById(R.id.tv_s);
-                TextView end_submission_time = (TextView) view.findViewById(R.id.tv_e);
-                TextView max_number_of_attempts = (TextView) view.findViewById(R.id.tv_n);
+                TextView title = (TextView) view.findViewById(R.id.tv_title);
+                TextView question_type = (TextView) view.findViewById(R.id.tv_question_type);
+                TextView required_language = (TextView) view.findViewById(R.id.tv_required_language);
+                TextView difficulty = (TextView) view.findViewById(R.id.tv_difficulty);
+                //TextView question_topic = (TextView) view.findViewById(R.id.tv_question_topic);
 
                 //String.valueOf(data.getTitle());
-
-                title.setText(data.getTitle2());
+                if(data.getSubmitted())
+                    title.setText("(SUBMITTED)"+data.getTitle());
+                else title.setText(data.getTitle());
                 //title.setText(String.valueOf(data.getUrl()));
-                description.setText(data.getDescription());
-                end_submission_time.setText(data.getEnd_submission_time());
-                max_number_of_attempts.setText(String.valueOf(data.getMax_number_of_attempts()));
+                question_type.setText(data.getQuestion_type());
+                required_language.setText(data.getRequired_language());
+                difficulty.setText(String.valueOf(data.getDifficulty()));
                 //question_topic.setText(data.getQuestion_topic());
 
                 //Log.i("content", content);
+
                 //Log.i("exp_name", datas.get(position).getExp_name());
                 return view;
             }
         }
-                        /*
-            String finalJson = result;
-            JSONObject parrentObject = new JSONObject(finalJson);
-            JSONArray parrentArray = parrentObject.getJSONArray("results");
-            for(int i=0;i<parrentArray.length();i++){
-                JSONObject finalObject = parrentArray.getJSONObject(i);
-                String questionURL = finalObject.getString("url");
-                String title = finalObject.getString("title");
-                String content = finalObject.getString("content");
-                String suggested_solution = finalObject.getString("suggested_solution");
-            }
-*/
     }
 }

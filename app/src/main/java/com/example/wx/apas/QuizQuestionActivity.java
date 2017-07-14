@@ -13,6 +13,7 @@ import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.text.Editable;
+import android.text.Html;
 import android.text.Spanned;
 import android.text.TextWatcher;
 import android.text.style.CharacterStyle;
@@ -53,7 +54,7 @@ import java.util.regex.Pattern;
  * Created by clp on 2017/2/15.
  */
 
-public class ButtonActivity extends AppCompatActivity {
+public class QuizQuestionActivity extends AppCompatActivity {
 
     //Button btn1, btn2;
     //Toast tst;
@@ -73,37 +74,23 @@ public class ButtonActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_eqscrolling);
+        setContentView(R.layout.activity_quiz_question);
+
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        getSupportActionBar().setTitle("Exercise");
+        getSupportActionBar().setTitle("Quiz");
 
         Bundle bundle = this.getIntent().getExtras();
         final String contentget = bundle.getString("content");
         solutionget = bundle.getString("solution");
         idget= bundle.getInt("question_id");
         required_languageget=bundle.getString("required_language");
+
         getSupportActionBar().setTitle(bundle.getString("title"));
 
         TextView tv_content = (TextView) findViewById(R.id.tv_content);
-        tv_content.setText(contentget);
-
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                AlertDialog.Builder builder = new AlertDialog.Builder(ButtonActivity.this);
-                builder.setTitle("Suggested_Solution");
-                builder.setMessage(solutionget);
-                builder.setNegativeButton("Close", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                    }
-                });
-                builder.show();
-            }
-        });
+        tv_content.setText(Html.fromHtml(contentget));
 
         Button bcompilation=(Button) findViewById(R.id.compilation);
         bcompilation.setOnClickListener(new View.OnClickListener() {
@@ -113,7 +100,7 @@ public class ButtonActivity extends AppCompatActivity {
                 type = "compile";
                 code = inputcode.getText().toString();
                 userinput = inputip.getText().toString();
-                progressDialog = ProgressDialog.show(ButtonActivity.this,"COMPILING","",true);
+                progressDialog = ProgressDialog.show(QuizQuestionActivity.this,"COMPILING","",true);
                 new JSONTaskPOST().execute(url);
             }
         });
@@ -126,7 +113,7 @@ public class ButtonActivity extends AppCompatActivity {
                 type = "run-input";
                 code = inputcode.getText().toString();
                 userinput = inputip.getText().toString();
-                progressDialog = ProgressDialog.show(ButtonActivity.this,"RUNNING THE INPUT","",true);
+                progressDialog = ProgressDialog.show(QuizQuestionActivity.this,"RUNNING THE INPUT","",true);
                 new JSONTaskPOST().execute(url);
             }
         });
@@ -139,20 +126,20 @@ public class ButtonActivity extends AppCompatActivity {
                 type = "pretest";
                 code = inputcode.getText().toString();
                 userinput = inputip.getText().toString();
-                progressDialog = ProgressDialog.show(ButtonActivity.this,"CHECKING WITH PRETEST","",true);
+                progressDialog = ProgressDialog.show(QuizQuestionActivity.this,"CHECKING WITH PRETEST","",true);
                 new JSONTaskPOST().execute(url);
             }
         });
 
-        Button balltest =(Button) findViewById(R.id.alltest);
-        balltest.setOnClickListener(new View.OnClickListener() {
+        Button bsubmit =(Button) findViewById(R.id.submit);
+        bsubmit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String url=Constants.ROOT_URL + "/mobile/alltest/";
-                type = "alltest";
+                String url=Constants.ROOT_URL + "/mobile/quiz-submit/";
+                type = "submit";
                 code = inputcode.getText().toString();
                 userinput = inputip.getText().toString();
-                progressDialog = ProgressDialog.show(ButtonActivity.this,"CHECKING WITH ALL TESTCASES","",true);
+                progressDialog = ProgressDialog.show(QuizQuestionActivity.this,"Submitting the code","",true);
                 new JSONTaskPOST().execute(url);
             }
         });
@@ -254,7 +241,7 @@ public class ButtonActivity extends AppCompatActivity {
             } /*catch (JSONException e) {
                 e.printStackTrace();
             }*/
-        finally {
+            finally {
                 if (connection != null)
                     connection.disconnect();
 
@@ -274,7 +261,7 @@ public class ButtonActivity extends AppCompatActivity {
             try {
                 JSONObject parrentObject = new JSONObject(finalJson);
 
-                AlertDialog.Builder builder = new AlertDialog.Builder(ButtonActivity.this);
+                AlertDialog.Builder builder = new AlertDialog.Builder(QuizQuestionActivity.this);
                 if(type.equals("compile")){
                     boolean success = parrentObject.getBoolean("success");
                     String message = parrentObject.getString("message");
@@ -328,18 +315,17 @@ public class ButtonActivity extends AppCompatActivity {
                         }
                     });
                     builder.show();
-                }else if(type.equals("alltest")){
-                    Integer score = parrentObject.getInt("score");
-                    boolean success = parrentObject.getBoolean("success");
-                    String message = parrentObject.getString("message");
+                }else if(type.equals("submit")){
 
-                    if(success){
-                        builder.setTitle("All Testcases Score");
-                        builder.setMessage( score.toString() );
+                    boolean submit = parrentObject.getBoolean("submitted");
+
+                    if(submit){
+                        builder.setTitle("Code submitted");
                     }else{
-                        builder.setTitle("Compilation is unsuccessful");
-                        builder.setMessage(message);
+                        builder.setTitle("Submission is unsuccessful");
+                        builder.setMessage("please try again!");
                     }
+
                     builder.setNegativeButton("Close", new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
