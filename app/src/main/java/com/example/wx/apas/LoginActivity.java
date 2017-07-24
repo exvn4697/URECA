@@ -3,6 +3,7 @@ package com.example.wx.apas;
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.annotation.TargetApi;
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.support.annotation.NonNull;
@@ -20,6 +21,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.provider.ContactsContract;
 import android.text.TextUtils;
+import android.util.Base64;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -29,7 +31,23 @@ import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.OutputStream;
+import java.io.OutputStreamWriter;
+import java.net.Authenticator;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.PasswordAuthentication;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -62,6 +80,9 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
     private EditText mPasswordView;
     private View mProgressView;
     private View mLoginFormView;
+    private String email;
+    private String password;
+    private ProgressDialog progressDialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -145,41 +166,19 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
      * errors are presented and no actual login attempt is made.
      */
     private void attemptLogin() {
-        if (mAuthTask != null) {
-            return;
-        }
 
         // Reset errors.
         mEmailView.setError(null);
         mPasswordView.setError(null);
 
         // Store values at the time of the login attempt.
-        String email = mEmailView.getText().toString();
-        String password = mPasswordView.getText().toString();
+        email = mEmailView.getText().toString();
+        password = mPasswordView.getText().toString();
 
-        boolean cancel = false;
-        View focusView = null;
-
-
-        // Check for a valid email address.
-        if (!isEmailValid(email) || !isPasswordValid(password)) {
-            mEmailView.setError(getString(R.string.error_invalid_email));
-            focusView = mEmailView;
-            cancel = true;
-        }
-
-
-        if (cancel) {
-            // There was an error; don't attempt login and focus the first
-            // form field with an error.
-            focusView.requestFocus();
-        } else {
-            // Show a progress spinner, and kick off a background task to
-            // perform the user login attempt.
-            showProgress(true);
-            mAuthTask = new UserLoginTask(email, password);
-            mAuthTask.execute((Void) null);
-        }
+        String mURL = Constants.ROOT_URL+ "/mobile/login/";
+        progressDialog = ProgressDialog.show(LoginActivity.this,"Authenticating","",true);
+        mAuthTask = new UserLoginTask(email, password);
+        mAuthTask.execute(mURL);
     }
 
     private boolean isEmailValid(String email) {
@@ -223,9 +222,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
             });
 //跳转
 
-                Intent intent = new Intent();
-                intent.setClass(this, DrawerActivity.class);
-                startActivity(intent);
+
 
             /*
             else{
@@ -300,10 +297,13 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
      * Represents an asynchronous login/registration task used to authenticate
      * the user.
      */
-    public class UserLoginTask extends AsyncTask<Void, Void, Boolean> {
+    public class UserLoginTask extends AsyncTask<String, String, String> {
 
         private final String mEmail;
         private final String mPassword;
+        private String url;
+        private String fullname;
+
 
         UserLoginTask(String email, String password) {
             mEmail = email;
@@ -311,38 +311,105 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
         }
 
         @Override
-        protected Boolean doInBackground(Void... params) {
+        protected String doInBackground(String... params) {
             // TODO: attempt authentication against a network service.
-/*
-            try {
-                // Simulate network access.
-                Thread.sleep(2000);
-            } catch (InterruptedException e) {
-                return false;
-            }*/
+            HttpURLConnection connection = null;
+            BufferedReader reader = null;
 
-            for (String credential : DUMMY_CREDENTIALS) {
-                String[] pieces = credential.split(":");
-                if (pieces[0].equals(mEmail)) {
-                    // Account exists, return true if the password matches.
-                    return pieces[1].equals(mPassword);
-                }
+            JSONObject postdata = new JSONObject();
+            try {
+                postdata.put("username", mEmail);
+                postdata.put("password", mPassword);
+
+            } catch (JSONException e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
             }
 
-            // TODO: register the new account here.
-            return true;
+            try {
+                URL url = new URL(params[0]);
+                connection = (HttpURLConnection) url.openConnection();
+                connection.setDoInput(true);
+                connection.setDoOutput(true);
+                connection.setUseCaches(false);
+                connection.setRequestMethod("POST");
+                connection.setRequestProperty("Content-Type","application/json");
+                connection.setRequestProperty("Accept", "application/json");
+                connection.connect();
+                byte[] postdatabytes = postdata.toString().getBytes("UTF-8");
+                System.out.println("json = "+postdata.toString() );
+
+                OutputStream os = connection.getOutputStream();
+                OutputStreamWriter osw = new OutputStreamWriter(os, "UTF-8");
+                osw.write( postdata.toString() );
+                osw.flush();
+                osw.close();
+
+                System.out.println("status POST = "+ connection.getResponseCode() );
+                InputStream stream = connection.getInputStream();
+
+                reader = new BufferedReader(new InputStreamReader(stream));
+
+                StringBuffer buffer = new StringBuffer();
+
+                String line = "";
+                while ((line = reader.readLine()) != null) {
+                    buffer.append(line);
+                }
+
+                return buffer.toString();
+
+            } catch (MalformedURLException e) {
+                e.printStackTrace();
+            } catch (IOException e) {
+                e.printStackTrace();
+            } /*catch (JSONException e) {
+                e.printStackTrace();
+            }*/
+            finally {
+                if (connection != null)
+                    connection.disconnect();
+
+                try {
+                    if (reader != null)
+                        reader.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+            return null;
         }
 
         @Override
-        protected void onPostExecute(final Boolean success) {
-            mAuthTask = null;
-            showProgress(false);
+        protected void onPostExecute(final String result) {
+            super.onPostExecute(result);
+            progressDialog.dismiss();
+            String finalJson = result;
+            try {
+                JSONObject parrentObject = new JSONObject(finalJson);
+                boolean success = parrentObject.getBoolean("success");
+                if(success){
+                    JSONObject identity = parrentObject.getJSONObject("identity");
+                    url = identity.getString("user");
+                    fullname = identity.getString("fullname");
 
-            if (success) {
-                finish();
-            } else {
-                mPasswordView.setError(getString(R.string.error_incorrect_password));
-                mPasswordView.requestFocus();
+                    Bundle bundle = new Bundle();
+                    bundle.putString("url",url);
+                    bundle.putString("fullname",fullname);
+                    bundle.putString("username",mEmail);
+                    bundle.putString("password",mPassword);
+
+                    Intent intent = new Intent();
+                    intent.setClass(LoginActivity.this, DrawerActivity.class);
+                    intent.putExtras(bundle);
+                    startActivity(intent);
+                }else{
+                    Toast.makeText(LoginActivity.this, "Wrong Username/Password!" ,Toast.LENGTH_SHORT).show();
+                    mEmailView.requestFocus();
+                }
+
+            } catch (JSONException e) {
+                e.printStackTrace();
             }
         }
 

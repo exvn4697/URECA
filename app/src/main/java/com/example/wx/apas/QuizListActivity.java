@@ -43,11 +43,13 @@ public class QuizListActivity extends AppCompatActivity {
     private static List<Data> datas = new ArrayList<Data>();
     private static  String firsturl;
     private static ListView lv;
-    private static int id;
+    private static int quiz_id;
     private static  String title;
     private static  String description;
     private static  String end;
     private static  String instructuion_file;
+    private static String username;
+    private static String password;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,9 +61,20 @@ public class QuizListActivity extends AppCompatActivity {
         getSupportActionBar().setTitle("Quiz");
 
         Bundle bundle = this.getIntent().getExtras();
-        id = bundle.getInt("id");
+        quiz_id = bundle.getInt("id");
         title = bundle.getString("title");
+        username = bundle.getString("username");
+        password = bundle.getString("password");
         getSupportActionBar().setTitle(title);
+
+        String firsturl = Constants.ROOT_URL + "/mobile/quiz-question-view/";
+        new JSONTaskPOST().execute(firsturl);
+        lv = (ListView)findViewById(R.id.lv);
+    }
+
+    @Override
+    public void onRestart(){
+        super.onRestart();
 
         String firsturl = Constants.ROOT_URL + "/mobile/quiz-question-view/";
         new JSONTaskPOST().execute(firsturl);
@@ -89,7 +102,7 @@ public class QuizListActivity extends AppCompatActivity {
 
             JSONObject postdata = new JSONObject();
             try {
-                postdata.put("quiz_id", id);
+                postdata.put("quiz_id", quiz_id);
 
             } catch (JSONException e) {
                 // TODO Auto-generated catch block
@@ -220,12 +233,19 @@ public class QuizListActivity extends AppCompatActivity {
                 String solution = data.getSolution();
                 int question_id = data.getId();
                 String required_language =data.getRequired_language();
+                String code_template = data.getCodeTemplate();
 
                 Bundle bundle=new Bundle();
+                bundle.putString("title",data.getTitle() );
+                bundle.putString("quiz_title",title);
                 bundle.putString("content", content);
+                bundle.putString("code_template",code_template);
                 bundle.putString("solution", solution);
+                bundle.putInt("quiz_id", quiz_id);
                 bundle.putInt("question_id",question_id);
                 bundle.putString("required_language",required_language);
+                bundle.putString("username",username);
+                bundle.putString("password",password);
                 intent.putExtras(bundle);
 
                 intent.putExtras(bundle);

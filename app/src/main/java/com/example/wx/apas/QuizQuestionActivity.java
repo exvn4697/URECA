@@ -16,10 +16,12 @@ import android.text.Editable;
 import android.text.Html;
 import android.text.Spanned;
 import android.text.TextWatcher;
+import android.text.method.ScrollingMovementMethod;
 import android.text.style.CharacterStyle;
 import android.text.style.ForegroundColorSpan;
 import android.util.Base64;
 import android.view.MenuItem;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
@@ -27,6 +29,7 @@ import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.Scroller;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -61,6 +64,7 @@ public class QuizQuestionActivity extends AppCompatActivity {
 
     //private TextView tv_content;
     private static int idget;
+    private int quiz_id;
     private static String required_languageget;
     private EditText inputcode;
     private EditText inputip;
@@ -70,6 +74,9 @@ public class QuizQuestionActivity extends AppCompatActivity {
     private String code;
     private String userinput;
     private ProgressDialog progressDialog;
+    private String code_template;
+    private String username;
+    private String password;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -83,9 +90,13 @@ public class QuizQuestionActivity extends AppCompatActivity {
 
         Bundle bundle = this.getIntent().getExtras();
         final String contentget = bundle.getString("content");
+        username = bundle.getString("username");
+        password = bundle.getString("password");
+        quiz_id = bundle.getInt("quiz_id");
         solutionget = bundle.getString("solution");
         idget= bundle.getInt("question_id");
         required_languageget=bundle.getString("required_language");
+        code_template = bundle.getString("code_template");
 
         getSupportActionBar().setTitle(bundle.getString("title"));
 
@@ -146,7 +157,20 @@ public class QuizQuestionActivity extends AppCompatActivity {
         inputcode =(EditText) findViewById(R.id.et_inputcode);
         inputip =(EditText) findViewById(R.id.et_inputip);
         SyntaxHighlighter.addEffect(inputcode);
-        inputcode.setText(solutionget);
+        inputcode.setOnTouchListener(new View.OnTouchListener() {
+
+            public boolean onTouch(View v, MotionEvent event) {
+
+                v.getParent().requestDisallowInterceptTouchEvent(true);
+                switch (event.getAction() & MotionEvent.ACTION_MASK){
+                    case MotionEvent.ACTION_UP:
+                        v.getParent().requestDisallowInterceptTouchEvent(false);
+                        break;
+                }
+                return false;
+            }
+        });
+        inputcode.setText(code_template);
     }
 
     @Override
@@ -154,6 +178,14 @@ public class QuizQuestionActivity extends AppCompatActivity {
         switch (item.getItemId()){
             case android.R.id.home:
                 onBackPressed();
+                /*onBackPressed();
+                Intent intent =new Intent(QuizQuestionActivity.this,QuizListActivity.class);
+                Bundle bundle = new Bundle();
+                Bundle current = this.getIntent().getExtras();
+                bundle.putString("title",current.getString("quiz_title"));
+                bundle.putInt("id",current.getInt("quiz_id"));
+                intent.putExtras(bundle);
+                startActivity(intent);*/
                 return true;
         }
         return super.onOptionsItemSelected(item);
@@ -166,14 +198,12 @@ public class QuizQuestionActivity extends AppCompatActivity {
             HttpURLConnection connection = null;
             BufferedReader reader = null;
 
-            final String username = "student1";
-            final String password = "1";
-
             JSONObject postdata = new JSONObject();
             try {
                 postdata.put("code", code);
                 postdata.put("required_language", required_languageget);
                 postdata.put("user_input", userinput);
+                postdata.put("quiz_id", quiz_id);
                 postdata.put("question_id", idget);
 
             } catch (JSONException e) {

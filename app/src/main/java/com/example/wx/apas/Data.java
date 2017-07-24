@@ -6,7 +6,7 @@ package com.example.wx.apas;
 
 public class Data {
     private int question_id;
-    private int assignment_id;
+    private int quiz_id;
 
     private String title;
     private String title2;
@@ -107,13 +107,13 @@ public class Data {
 
 
     public int getId2() {
-        return assignment_id;
+        return quiz_id;
     }
     public void setId2(String url) {
         String[] str = url.split("/");
         //int a=Integer.parseInt(s)
-        int assignment_id = Integer.parseInt(str[5]);
-        this.assignment_id = assignment_id;
+        int quiz_id = Integer.parseInt(str[5]);
+        this.quiz_id = quiz_id;
     }
 
     public String getTitle2() {

@@ -9,9 +9,18 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
+import android.widget.TextView;
+
+import org.w3c.dom.Text;
 
 public class DrawerActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
+
+    private int user_id;
+    private String username;
+    private String password;
+    private String url;
+    private String fullname;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -20,6 +29,18 @@ public class DrawerActivity extends AppCompatActivity
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+        Bundle bundle = this.getIntent().getExtras();
+        url = bundle.getString("url");
+        username = bundle.getString("username");
+        password = bundle.getString("password");
+        fullname = bundle.getString("fullname");
+
+        String[] str = url.split("/");
+        //int a=Integer.parseInt(s)
+        user_id = Integer.parseInt(str[5]);
+
+        TextView welcometv = (TextView) findViewById(R.id.welcome);
+        welcometv.setText("Welcome, "+fullname);
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
@@ -68,22 +89,26 @@ public class DrawerActivity extends AppCompatActivity
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
+        Bundle bundle = new Bundle();
+        bundle.putInt("user_id",user_id);
+        bundle.putString("username",username);
+        bundle.putString("password",password);
+
         if (id == R.id.nav_exercise) {
             // Handle the camera action
             Intent intent = new Intent();
             intent.setClass(this, ScrollingActivity.class);
+            intent.putExtras(bundle);
             startActivity(intent);
         } else if (id == R.id.nav_quiz) {
             Intent intent = new Intent();
             intent.setClass(this, QuizActivity.class);
-            startActivity(intent);
-        } else if (id == R.id.nav_share) {
-            Intent intent = new Intent();
-            intent.setClass(this, ChangePasswordActivity.class);
-            startActivity(intent);
+            intent.putExtras(bundle);
+            startActivity(intent);;
         } else if (id == R.id.nav_send){
             Intent intent = new Intent();
             intent.setClass(this, LoginActivity.class);
+            intent.putExtras(bundle);
             startActivity(intent);
         }
 

@@ -41,10 +41,13 @@ public class QuizActivity extends AppCompatActivity {
     private static  String firsturl;
     private static ListView lv2;
     private static int id;
+    private static Integer user_id;
     private static  String title;
     private static  String description;
     private static  String end;
     private static  String instructuion_file;
+    private static String username;
+    private static String password;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,6 +57,11 @@ public class QuizActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setTitle("Quiz");
+
+        Bundle bundle = this.getIntent().getExtras();
+        user_id  = bundle.getInt("user_id");
+        username = bundle.getString("username");
+        password = bundle.getString("password");
 
         firsturl = Constants.ROOT_URL + "/mobile/quiz-view/";
 
@@ -78,12 +86,11 @@ public class QuizActivity extends AppCompatActivity {
             HttpURLConnection connection = null;
             BufferedReader reader = null;
 
-            final String username = "student1";
-            final String password = "1";
-
             JSONObject postdata = new JSONObject();
+            System.out.println("aaaaa username = "+username );
+            System.out.println("aaaaa password = "+password );
             try {
-                postdata.put("user_id", 3);
+                postdata.put("user_id", user_id);
 
             } catch (JSONException e) {
                 // TODO Auto-generated catch block
@@ -221,6 +228,8 @@ public class QuizActivity extends AppCompatActivity {
                 bundle.putString("title",title);
                 bundle.putString("description",description);
                 bundle.putString("end",end);
+                bundle.putString("username",username);
+                bundle.putString("password",password);
 
                 intent.putExtras(bundle);
 

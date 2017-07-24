@@ -52,6 +52,8 @@ public class ScrollingActivity2 extends AppCompatActivity{
     private static String posget;
     private static int question_id;
     private static String required_language;
+    private static String username;
+    private static String password;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,9 +67,8 @@ public class ScrollingActivity2 extends AppCompatActivity{
         Bundle bundle = this.getIntent().getExtras();
         //接收name值
         urlget = bundle.getString("url");
-        //String nextget = bundle.putString("next");
-        //posget = bundle.getString("languages[pos]");
-        //String url = "http://10.0.2.2:8000/mobile/question";
+        username = bundle.getString("username");
+        password = bundle.getString("password");
 
         new JSONTaskGET().execute(urlget);
 
@@ -169,8 +170,7 @@ public class ScrollingActivity2 extends AppCompatActivity{
         protected String doInBackground(String... params) {
             HttpURLConnection connection = null;
             BufferedReader reader = null;
-            final String username = "student1";
-            final String password = "1";
+
             Authenticator.setDefault(new Authenticator() {
                 protected PasswordAuthentication getPasswordAuthentication() {
                     return new PasswordAuthentication(username, password.toCharArray());

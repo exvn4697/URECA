@@ -44,12 +44,14 @@
                     android:hint="Write your code here"
                     android:textSize="14sp"
                     android:background="@android:drawable/edit_text"
+                    android:overScrollMode="always"
+                    android:scrollbarStyle="insideInset"
                     android:scrollbars="vertical"
-                    android:minLines="18"
-                    android:maxLines="21"
+                    android:minLines="10"
+                    android:maxLines="15"
                     android:inputType="textMultiLine"
-                    android:gravity="top"
-                    />
+                    android:gravity="top" />
+
                 <TextView
                     android:text="Your Input"
                     android:layout_width="match_parent"
@@ -67,6 +69,8 @@
                     android:minLines="4"
                     android:maxLines="4"
                     android:inputType="textMultiLine"
+                    android:overScrollMode="always"
+                    android:scrollbarStyle="insideInset"
                     android:scrollbars="vertical"
                     android:gravity="top" />
             </LinearLayout>

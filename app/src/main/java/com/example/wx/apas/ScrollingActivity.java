@@ -19,6 +19,7 @@ import android.support.v7.widget.Toolbar;
 import android.util.Base64;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
@@ -60,6 +61,8 @@ public class ScrollingActivity extends AppCompatActivity{
     private static String currurl;
     private static int question_id;
     private static String required_language;
+    private static String username;
+    private static String password;
     //private static String question_topicurl;
     //private static String question_topic;
 
@@ -70,6 +73,10 @@ public class ScrollingActivity extends AppCompatActivity{
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+        Bundle bundle = this.getIntent().getExtras();
+        username = bundle.getString("username");
+        password = bundle.getString("password");
 
         firsturl = Constants.ROOT_URL + "/mobile/question/";
         //firsturl = "http://127.0.0.1:8000/mobile/question/";
@@ -174,6 +181,15 @@ public class ScrollingActivity extends AppCompatActivity{
     }*/
     }
 
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()){
+            case android.R.id.home:
+                onBackPressed();
+                return true;
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
 
     class JSONTaskGET extends AsyncTask<String, String, String>{
 
@@ -181,9 +197,6 @@ public class ScrollingActivity extends AppCompatActivity{
         protected String doInBackground(String... params) {
             HttpURLConnection connection = null;
             BufferedReader reader = null;
-
-            final String username = "student1";
-            final String password = "1";
 
             Authenticator.setDefault(new Authenticator() {
                 protected PasswordAuthentication getPasswordAuthentication() {

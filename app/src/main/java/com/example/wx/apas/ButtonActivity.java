@@ -19,6 +19,7 @@ import android.text.style.CharacterStyle;
 import android.text.style.ForegroundColorSpan;
 import android.util.Base64;
 import android.view.MenuItem;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
@@ -159,6 +160,19 @@ public class ButtonActivity extends AppCompatActivity {
         inputcode =(EditText) findViewById(R.id.et_inputcode);
         inputip =(EditText) findViewById(R.id.et_inputip);
         SyntaxHighlighter.addEffect(inputcode);
+        inputcode.setOnTouchListener(new View.OnTouchListener() {
+
+            public boolean onTouch(View v, MotionEvent event) {
+
+                v.getParent().requestDisallowInterceptTouchEvent(true);
+                switch (event.getAction() & MotionEvent.ACTION_MASK){
+                    case MotionEvent.ACTION_UP:
+                        v.getParent().requestDisallowInterceptTouchEvent(false);
+                        break;
+                }
+                return false;
+            }
+        });
         inputcode.setText(solutionget);
     }
 
