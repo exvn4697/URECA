@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:orientation="horizontal"
+    android:layout_height="wrap_content"
+    android:weightSum="1">
+
+        <Button
+            android:text="Try Compilation"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:id="@+id/compilation"
+
+            android:background="@android:drawable/divider_horizontal_textfield"
+            android:textColorHint="@color/colorPrimaryDark"
+            android:layout_weight="0.10" />
+
+        <Button
+            android:text="Run INPUT"
+            android:layout_weight="0.10"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:id="@+id/runinput"
+            android:textColorHint="@color/colorPrimaryDark"
+            android:background="@android:drawable/divider_horizontal_textfield" />
+
+        <Button
+            android:text="CHECK WITH PRETESTS"
+            android:layout_weight="0.40"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:id="@+id/pretest"
+            android:background="@android:drawable/divider_horizontal_textfield" />
+
+        <Button
+            android:text="CHECK WITH ALL TESTCASES"
+            android:layout_weight="0.40"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:id="@+id/alltest"
+            android:background="@android:drawable/divider_horizontal_textfield" />
+</LinearLayout>
