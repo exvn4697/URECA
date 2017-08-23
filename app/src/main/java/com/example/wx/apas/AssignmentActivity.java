@@ -3,13 +3,10 @@ package com.example.wx.apas;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.os.Handler;
-import android.os.Message;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Base64;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
@@ -43,25 +40,43 @@ public class AssignmentActivity extends AppCompatActivity {
     private static List<Data> datas = new ArrayList<Data>();
     private static  String firsturl;
     private static ListView lv2;
-    private static int assignment_id;
-    private static  String ass_title;
-    private static  String ass_description;
-    private static  String ass_end;
+    private static int id;
+    private static Integer user_id;
+    private static  String title;
+    private static  String description;
+    private static  String end;
     private static  String instructuion_file;
+    private static String username;
+    private static String password;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_assignment);
+        setContentView(R.layout.activity_quiz);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setTitle("Assignment");
+
+        Bundle bundle = this.getIntent().getExtras();
+        user_id  = bundle.getInt("user_id");
+        username = bundle.getString("username");
+        password = bundle.getString("password");
 
         firsturl = Constants.ROOT_URL + "/mobile/assignment-view/";
-/*        new JSONTaskGET().execute(firsturl);
-        lv2 = (ListView)findViewById(R.id.lv2);*/
 
         new JSONTaskPOST().execute(firsturl);
         lv2 = (ListView)findViewById(R.id.lv2);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()){
+            case android.R.id.home:
+                onBackPressed();
+                return true;
+        }
+        return super.onOptionsItemSelected(item);
     }
 
     class JSONTaskPOST extends AsyncTask<String, String, String> {
@@ -71,12 +86,11 @@ public class AssignmentActivity extends AppCompatActivity {
             HttpURLConnection connection = null;
             BufferedReader reader = null;
 
-            final String username = "student1";
-            final String password = "1";
-
             JSONObject postdata = new JSONObject();
+            System.out.println("aaaaa username = "+username );
+            System.out.println("aaaaa password = "+password );
             try {
-                postdata.put("user_id", 3);
+                postdata.put("user_id", user_id);
 
             } catch (JSONException e) {
                 // TODO Auto-generated catch block
@@ -158,15 +172,14 @@ public class AssignmentActivity extends AppCompatActivity {
             }
             return null;
         }
-        protected void onPostExecute(String assignment) {
-            super.onPostExecute(assignment);
-            String finalJson = assignment;
+        protected void onPostExecute(String quiz) {
+            super.onPostExecute(quiz);
+            String finalJson = quiz;
             try {
-                //String finalJson = assignment;
                 JSONObject parrentObject = new JSONObject(finalJson);
                 //next = parrentObject.getString("next");
                 // previous = parrentObject.getString("previous");
-
+                datas = new ArrayList<Data>();
                 JSONArray parrentArray = parrentObject.getJSONArray("assignment");
                 for (int i = 0; i < parrentArray.length(); i++) {
                     JSONObject finalObject = parrentArray.getJSONObject(i);
@@ -176,7 +189,6 @@ public class AssignmentActivity extends AppCompatActivity {
                     String start_submission_time = finalObject.getString("start_submission_time");
                     //int difficulty = finalObject.getInt("difficulty");
                     String end_submission_time = finalObject.getString("end_submission_time");
-                    int max_number_of_attempts = finalObject.getInt("max_number_of_attempts");
                     //question_topicurl =finalObject.getString("question_topic");
                     //String question_topic =finalObject.getString("happy");
 
@@ -187,7 +199,6 @@ public class AssignmentActivity extends AppCompatActivity {
                     //data.setStart_submission_time(start_submission_time);
                     //data.setDifficulty(difficulty);
                     data.setEnd_submission_time(end_submission_time);
-                    data.setMax_number_of_attempts(max_number_of_attempts);
 
                     //data.setQuestion_topic(question_topic);
                     //这个地方可以获取到值但是适配器那位0
@@ -203,29 +214,22 @@ public class AssignmentActivity extends AppCompatActivity {
 
         private final class ItemClickEvent implements AdapterView.OnItemClickListener {
             @Override
-            //这里需要注意的是第三个参数arg2，这是代表单击第几个选项
             public void onItemClick(AdapterView<?> arg0, View arg1, int position,
                                     long arg3) {
-                //通过单击事件，获得单击选项的内容
-                //String text = lv.getItemAtPosition(arg2)+"";
-                //通过吐丝对象显示出来。
-                //Toast.makeText(getApplicationContext(), text, 1).show();
-
-                //新建一个显式意图，第一个参数为当前Activity类对象，第二个参数为你要打开的Activity类
-                Intent intent =new Intent(AssignmentActivity.this, AssListActivity.class);
+                Intent intent =new Intent(AssignmentActivity.this, AssignmentListActivity.class);
 
                 final Data data = datas.get(position);
-                assignment_id = data.getId2();
-                ass_title = data.getTitle2();
-                ass_description = data.getDescription();
-                ass_end = data.getEnd_submission_time();
-                //用Bundle携带数据
+                id = data.getId2();
+                title = data.getTitle2();
+                description = data.getDescription();
+                end = data.getEnd_submission_time();
                 Bundle bundle=new Bundle();
-                //传递name参数为tinyphp
-                bundle.putInt("assignment_id",assignment_id);
-                bundle.putString("ass_title",ass_title);
-                bundle.putString("ass_description",ass_description);
-                bundle.putString("ass_end",ass_end);
+                bundle.putInt("id",id);
+                bundle.putString("title",title);
+                bundle.putString("description",description);
+                bundle.putString("end",end);
+                bundle.putString("username",username);
+                bundle.putString("password",password);
 
                 intent.putExtras(bundle);
 
@@ -238,7 +242,6 @@ public class AssignmentActivity extends AppCompatActivity {
 
             @Override
             public int getCount() {
-                // Log.d("AAA", "" + datas.size());
                 return datas.size();
             }
 
@@ -257,39 +260,17 @@ public class AssignmentActivity extends AppCompatActivity {
             public View getView(int position, View convertView, ViewGroup parent) {
                 View view = View.inflate(AssignmentActivity.this, R.layout.item_listviewass, null);
                 final Data data = datas.get(position);
-                //Log.d("aaaaa", datas.get(position).getExp_name());
 
                 TextView title = (TextView) view.findViewById(R.id.tv_t);
                 TextView description = (TextView) view.findViewById(R.id.tv_d);
-                //TextView start_submission_time = (TextView) view.findViewById(R.id.tv_s);
                 TextView end_submission_time = (TextView) view.findViewById(R.id.tv_e);
-                TextView max_number_of_attempts = (TextView) view.findViewById(R.id.tv_n);
-
-                //String.valueOf(data.getTitle());
-
                 title.setText(data.getTitle2());
                 //title.setText(String.valueOf(data.getUrl()));
                 description.setText(data.getDescription());
                 end_submission_time.setText(data.getEnd_submission_time());
-                max_number_of_attempts.setText(String.valueOf(data.getMax_number_of_attempts()));
                 //question_topic.setText(data.getQuestion_topic());
-
-                //Log.i("content", content);
-                //Log.i("exp_name", datas.get(position).getExp_name());
                 return view;
             }
         }
-        /*
-            String finalJson = result;
-            JSONObject parrentObject = new JSONObject(finalJson);
-            JSONArray parrentArray = parrentObject.getJSONArray("results");
-            for(int i=0;i<parrentArray.length();i++){
-                JSONObject finalObject = parrentArray.getJSONObject(i);
-                String questionURL = finalObject.getString("url");
-                String title = finalObject.getString("title");
-                String content = finalObject.getString("content");
-                String suggested_solution = finalObject.getString("suggested_solution");
-            }
-*/
     }
 }

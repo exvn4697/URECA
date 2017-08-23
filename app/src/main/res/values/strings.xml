@@ -156,7 +156,10 @@
     <string name="title_activity_assignment">AssignmentActivity</string>
     <string name="title_activity_ass_list">AssListActivity</string>
     <string name="title_activity_as_list">AsListActivity</string>
-    <string name="title_activity_quiz_list">QuizListActivity</string>
+    <string name="title_activity_ass_q">AssignmentQuestionActivity</string>
 
+    <string name="title_activity_quiz">QuizActivity</string>
+    <string name="title_activity_quiz_list">QuizListActivity</string>
+    <string name="title_activity_quiz_q">QuizQuestionActivity</string>
 
 </resources>

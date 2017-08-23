@@ -5,5 +5,6 @@ package com.example.wx.apas;
  */
 
 public final class Constants {
-    public static final String ROOT_URL = "http://192.168.1.5:8000";
+    public static final String ROOT_URL = "http://192.168.0.103:8000";
+    public static final String SEPARATOR = "b18f33f8-0d0b-4a86-ae60-8c802e645bfc"; //same with question-panels.js
 }

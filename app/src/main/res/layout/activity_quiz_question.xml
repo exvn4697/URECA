@@ -33,7 +33,7 @@
             android:weightSum="1">
 
             <Button
-                android:text="Try Compilation"
+                android:text="Compile"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:id="@+id/compilation"
@@ -43,7 +43,7 @@
                 android:layout_weight="0.2" />
 
             <Button
-                android:text="Run INPUT"
+                android:text="Run"
                 android:layout_weight="0.2"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
@@ -52,7 +52,7 @@
                 android:background="@android:drawable/divider_horizontal_textfield" />
 
             <Button
-                android:text="CHECK WITH PRETESTS"
+                android:text="Test"
                 android:layout_weight="0.3"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"

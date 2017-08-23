@@ -5,10 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
-    tools:context="com.example.wx.apas.ScrollingActivity">
-
-    <include layout="@layout/content_scrolling"
-        android:layout_height="534dp"        />
+    tools:context="com.example.wx.apas.ExerciseListActivity">
 
     <android.support.design.widget.AppBarLayout
         android:id="@+id/app_bar"
@@ -67,18 +64,21 @@
                 android:layout_weight="1">
 
                 <Spinner
-                    android:layout_width="193dp"
+                    android:layout_width="wrap_content"
                     android:layout_height="30dp"
                     android:id="@+id/spinner"
                     android:entries="@array/languages"
-                    android:layout_gravity="left" />
+                    android:layout_gravity="left"
+                    android:layout_weight="0.98" />
 
                 <Spinner
-                    android:layout_width="192dp"
-                    android:layout_height="30dp"
                     android:id="@+id/spinner2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="30dp"
+                    android:layout_gravity="right"
+                    android:textColor ="@android:color/white"
                     android:entries="@array/topics"
-                    android:layout_gravity="right" />
+                    android:theme="@style/ThemeOverlay.AppCompat.Dark" />
 
             </LinearLayout>
 
@@ -124,10 +124,9 @@
                   />
 
             </LinearLayout>
-
         </LinearLayout>
 
     </android.support.design.widget.AppBarLayout>
-
+    <include layout="@layout/content_scrolling"/>
 </android.support.design.widget.CoordinatorLayout>
 

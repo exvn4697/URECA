@@ -22,6 +22,10 @@ public class Data {
     private String program_output;
     private boolean submitted;
 
+    private int number_of_options;
+    private int number_of_blanks;
+    private int number_of_files;
+
     private String description;
     private String start_submission_time;
     private String end_submission_time;
@@ -149,6 +153,30 @@ public class Data {
     }
     public void setSubmitted(boolean submitted) {
         this.submitted = submitted;
+    }
+
+    public int getNumber_of_blanks() {
+        return number_of_blanks;
+    }
+
+    public void setNumber_of_blanks(int number_of_blanks) {
+        this.number_of_blanks = number_of_blanks;
+    }
+
+    public int getNumber_of_options() {
+        return number_of_options;
+    }
+
+    public void setNumber_of_options(int number_of_options) {
+        this.number_of_options = number_of_options;
+    }
+
+    public int getNumber_of_files() {
+        return number_of_files;
+    }
+
+    public void setNumber_of_files(int number_of_files) {
+        this.number_of_files = number_of_files;
     }
 
     @Override

@@ -11,8 +11,6 @@ import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.widget.TextView;
 
-import org.w3c.dom.Text;
-
 public class DrawerActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
@@ -97,7 +95,7 @@ public class DrawerActivity extends AppCompatActivity
         if (id == R.id.nav_exercise) {
             // Handle the camera action
             Intent intent = new Intent();
-            intent.setClass(this, ScrollingActivity.class);
+            intent.setClass(this, ExerciseListActivity.class);
             intent.putExtras(bundle);
             startActivity(intent);
         } else if (id == R.id.nav_quiz) {
@@ -105,7 +103,12 @@ public class DrawerActivity extends AppCompatActivity
             intent.setClass(this, QuizActivity.class);
             intent.putExtras(bundle);
             startActivity(intent);;
-        } else if (id == R.id.nav_send){
+        } else if (id == R.id.nav_assignment){
+            Intent intent = new Intent();
+            intent.setClass(this, AssignmentActivity.class);
+            intent.putExtras(bundle);
+            startActivity(intent);
+        }else if (id == R.id.nav_send){
             Intent intent = new Intent();
             intent.setClass(this, LoginActivity.class);
             intent.putExtras(bundle);

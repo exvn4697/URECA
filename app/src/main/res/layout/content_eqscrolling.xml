@@ -5,8 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context="com.example.wx.apas.ButtonActivity"
-    tools:showIn="@layout/activity_eqscrolling">
+    tools:context="com.example.wx.apas.ExerciseCodingActivity"
+    tools:showIn="@layout/activity_ecodingscrolling">
 
 
     <LinearLayout
@@ -48,7 +48,7 @@
                     android:scrollbarStyle="insideInset"
                     android:scrollbars="vertical"
                     android:minLines="10"
-                    android:maxLines="15"
+                    android:maxLines="20"
                     android:inputType="textMultiLine"
                     android:gravity="top" />
 

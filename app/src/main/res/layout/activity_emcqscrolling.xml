@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
+    tools:context="com.example.wx.apas.ExerciseCodingActivity">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+        <android.support.design.widget.AppBarLayout
+            android:id="@+id/app_bar"
+            android:layout_width="match_parent"
+            android:layout_height="110dp"
+            android:fitsSystemWindows="true"
+            android:theme="@style/AppTheme.NoActionBar.AppBarOverlay"
+            android:background="?attr/colorPrimaryDark">
+
+
+            <android.support.v7.widget.Toolbar
+                android:id="@+id/toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                app:layout_collapseMode="pin"
+                app:popupTheme="@style/AppTheme.NoActionBar.PopupOverlay" />
+
+            <Button
+                android:text="Submit"
+                android:layout_weight="0.40"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:id="@+id/submit"
+                android:background="@android:drawable/divider_horizontal_textfield" />
+
+        </android.support.design.widget.AppBarLayout>
+
+        <TextView
+            android:id="@+id/tv_content"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/text_margin"
+            android:text="content" />
+
+        <RadioGroup
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:id="@+id/options">
+        </RadioGroup>
+    </LinearLayout>
+
+</android.support.design.widget.CoordinatorLayout>

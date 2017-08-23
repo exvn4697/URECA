@@ -38,7 +38,7 @@
                 android:value="com.example.wx.apas.LoginActivity" />
         </activity>
         <activity
-            android:name=".ScrollingActivity"
+            android:name=".ExerciseListActivity"
             android:label="@string/title_activity_scrolling"
             android:parentActivityName=".DrawerActivity"
             android:theme="@style/AppTheme.NoActionBar">
@@ -47,13 +47,13 @@
                 android:value="com.example.wx.apas.DrawerActivity" />
         </activity>
         <activity
-            android:name=".ButtonActivity"
+            android:name=".ExerciseCodingActivity"
             android:label="@string/title_activity_eqscrolling"
-            android:parentActivityName=".ScrollingActivity"
+            android:parentActivityName=".ExerciseListActivity"
             android:theme="@style/AppTheme.NoActionBar">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.example.wx.apas.ScrollingActivity" />
+                android:value="com.example.wx.apas.ExerciseListActivity" />
         </activity>
         <!--
  ATTENTION: This was auto-generated to add Google Play services to your project for
@@ -73,8 +73,35 @@
                 android:value="com.example.wx.apas.DrawerActivity" />
         </activity>
         <activity
-            android:name=".ScrollingActivity2"
-            android:label="@string/title_activity_scrolling2"
+            android:name=".CodingActivity"
+            android:label="@string/title_activity_coding"
+            android:parentActivityName=".ExerciseCodingActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.wx.apas.ExerciseCodingActivity" />
+        </activity>
+        <activity
+            android:name=".ExerciseMCQActivity"
+            android:label="@string/title_activity_coding"
+            android:parentActivityName=".ExerciseListActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.wx.apas.ExerciseMCQActivity" />
+        </activity>
+        <activity
+            android:name=".ExerciseFIBActivity"
+            android:label="@string/title_activity_coding"
+            android:parentActivityName=".ExerciseListActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.wx.apas.ExerciseFIBActivity" />
+        </activity>
+        <activity
+            android:name=".QuizActivity"
+            android:label="@string/title_activity_quiz"
             android:parentActivityName=".DrawerActivity"
             android:theme="@style/AppTheme.NoActionBar">
             <meta-data
@@ -82,16 +109,25 @@
                 android:value="com.example.wx.apas.DrawerActivity" />
         </activity>
         <activity
-            android:name=".CodingActivity"
-            android:label="@string/title_activity_coding"
-            android:parentActivityName=".ButtonActivity"
+            android:name=".QuizListActivity"
+            android:label="@string/title_activity_quiz_list"
+            android:parentActivityName=".QuizActivity"
             android:theme="@style/AppTheme.NoActionBar">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.example.wx.apas.ButtonActivity" />
+                android:value="com.example.wx.apas.QuizActivity" />>
         </activity>
         <activity
-            android:name=".QuizActivity"
+            android:name=".QuizQuestionActivity"
+            android:label="@string/title_activity_quiz_q"
+            android:parentActivityName=".QuizListActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.wx.apas.QuizListActivity" />
+        </activity>
+        <activity
+            android:name=".AssignmentActivity"
             android:label="@string/title_activity_assignment"
             android:parentActivityName=".DrawerActivity"
             android:theme="@style/AppTheme.NoActionBar">
@@ -100,18 +136,22 @@
                 android:value="com.example.wx.apas.DrawerActivity" />
         </activity>
         <activity
-            android:name=".QuizQuestionActivity"
+            android:name=".AssignmentListActivity"
             android:label="@string/title_activity_ass_list"
-            android:parentActivityName=".QuizActivity"
+            android:parentActivityName=".AssignmentActivity"
             android:theme="@style/AppTheme.NoActionBar">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.example.wx.apas.QuizActivity" />
-        </activity>
+                android:value="com.example.wx.apas.AssignmentActivity" />></activity>
         <activity
-            android:name=".QuizListActivity"
-            android:label="@string/title_activity_quiz_list"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:name=".AssignmentQuestionActivity"
+            android:label="@string/title_activity_ass_q"
+            android:parentActivityName=".AssignmentListActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.wx.apas.AssignmentListActivity" />
+        </activity>
     </application>
 
 </manifest>
